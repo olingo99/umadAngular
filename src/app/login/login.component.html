@@ -1,0 +1,13 @@
+<p>login works!</p>
+<form [formGroup] = "loginForm" (ngSubmit)="onSubmit($event.submitter.id)">
+   <div>
+        <label for="username">Username</label>
+        <input type="text" formControlName="username" id="username">
+   </div>
+    <div>
+          <label for="password">Password</label>
+          <input type="password" formControlName="password" id="password">
+    </div>
+    <button type="submit" id = "SignIn" [disabled]="!loginForm.valid">login</button>
+    <button type="submit" id = "SignUp" >signup</button>
+</form>

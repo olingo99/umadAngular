@@ -18,7 +18,7 @@ export class User {
 })
 export class UserService {
 
-  baseUrl : string = 'http://localhost:8000';
+  baseUrl : string = 'http://localhost:3000';
 
   constructor(private http : HttpClient) { }
 
@@ -26,8 +26,14 @@ export class UserService {
     return this.http.post<User>(this.baseUrl+'/login', {Name, passWord});
   }
 
-  checkUserName(Name: string): Observable<boolean> {
+  checkUserName(Name: string): Observable<User> {
     // let params = new HttpParams().set("Name","Namezaerez"); //Create new HttpParams
-    return this.http.get<boolean>(this.baseUrl+`/user/name/${Name}`);
+    console.warn(this.baseUrl+`/user/name/${Name}`);
+    return this.http.get<User>(this.baseUrl+`/user/name/${Name}`);
   }
+
+  addUser(Name: string, passWord: string): Observable<User> {
+    return this.http.post<User>(this.baseUrl+'/user', {Name, passWord});
+  }
+  
 }

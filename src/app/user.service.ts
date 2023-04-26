@@ -31,3 +31,4 @@ export class UserService {
     return this.http.get<boolean>(this.baseUrl+`/user/name/${Name}`);
   }
 }
+  

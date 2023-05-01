@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { User, UserService } from './../user.service';
 import { Router } from '@angular/router';
-
+import { Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -13,11 +14,12 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
   loginForm = this.formBuilder.group({
-    username: '',
-    password: ''
+    username: 'postman',
+    password: '123456'
   });
 
   resLabel: string = "";
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,7 +38,10 @@ export class LoginComponent {
     console.warn('Your order has been submitted', this.loginForm.value);
     if (this.loginForm.value.username !== null && this.loginForm.value.password !== null) {
       this.userService.tryLogin(this.loginForm.value.username!, this.loginForm.value.password!).subscribe({
-        next: (data) => { this.router.navigate(['/home']) },
+        next: (data) => { 
+          this.router.navigate(['/home']);
+          this.userService.setUserName(data);
+        },
         error: (error) => {
           this.resLabel = "Wrong username or password";
           console.log('error');

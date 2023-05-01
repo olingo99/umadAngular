@@ -7,12 +7,18 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UserComponent } from './user/user.component';
+import { EventDayComponent } from './event-day/event-day.component';
+import { FriendListComponent } from './friend-list/friend-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    UserComponent,
+    EventDayComponent,
+    FriendListComponent
   ],
   imports: [
     BrowserModule,

@@ -6,3 +6,7 @@
     overflow: hidden;
     /* height: 5vh; */
   }
+
+app-event{
+  padding: 10px;
+}

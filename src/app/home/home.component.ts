@@ -20,6 +20,8 @@ export class HomeComponent {
   ngOnInit(): void {
     // this.user = this.userService.getUserName();
     this.route.queryParams.subscribe((params) => {
+      console.warn('params[] home')
+      console.warn(params['id'])
       this.userService.getUserById(params['id']).subscribe({
         next: (data) => {
           this.user = data;

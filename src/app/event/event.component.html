@@ -1,8 +1,13 @@
-<div calss = "vertical-separator">
-    <div class = "event">
-            <!-- {{event.Name}} -->
+<div class = "vertical-separator">
+    <div class = "event text">
+        <div>
+                {{event.Name}}
+        </div>
+        <div id = "category">
+               category:  {{category.name}}
+        </div>
     </div>
-    <div class = "weight">
-            <!-- {{event.Weight}} -->
+    <div class = "weight" [ngStyle] ="{'color': getColor(event.Weight)}">
+        {{event.Weight}}
     </div>
 </div>

@@ -5,7 +5,7 @@
         <app-user [user]="user" *ngIf="active"></app-user>
     </div>
     <div class="vertical">
-        <app-event-day></app-event-day>
+        <app-event-day [user]="user" *ngIf="active"></app-event-day>
     </div>
     <div class="vertical">
        <app-friend-list></app-friend-list>

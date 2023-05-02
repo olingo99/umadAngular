@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
 import { EventDayComponent } from './event-day/event-day.component';
 import { FriendListComponent } from './friend-list/friend-list.component';
 import { EventComponent } from './event/event.component';
+
+import { HTTPInterceptorService } from './httpinterceptor.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { EventComponent } from './event/event.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: HTTPInterceptorService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

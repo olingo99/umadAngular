@@ -4,11 +4,9 @@ import { Observable } from 'rxjs';
 import { AuthTokenService } from './auth-token.service';
 
 
-@Injectable(
-  // {
-  // providedIn: 'root'
-// }
-)
+@Injectable({
+  providedIn: 'root'
+})
 export class HTTPInterceptorService implements HttpInterceptor{
 
   ignoredUrls = [

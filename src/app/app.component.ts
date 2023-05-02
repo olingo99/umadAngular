@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User} from './user.service';
+
 
 @Component({
   selector: 'app-root',
@@ -9,5 +9,4 @@ import { User} from './user.service';
 export class AppComponent {
   title = 'umadAngularfeur';
 
-  user: User= new User();
 }

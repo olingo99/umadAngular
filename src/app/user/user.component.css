@@ -45,3 +45,7 @@
     background: white;
   }
 
+.button-separator {
+    margin-left: 10px;
+    margin-right: 10px;
+}

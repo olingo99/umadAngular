@@ -8,3 +8,8 @@
         <div class="marker end text">100</div>
     </div>
 </div>
+
+<div class="button-separator">
+<button (click)="addEvent()" [disabled]="!isAddEventActive" style="margin-right: 20px">Add an event</button>
+<button (click)="seeEvents()" style="margin-left: 20px">See all events</button>
+</div>

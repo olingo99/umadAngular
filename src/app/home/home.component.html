@@ -2,7 +2,7 @@
 
 <div id="VerticaSeparator">
     <div class="vertical">
-        <app-user [user]="user"></app-user>
+        <app-user [user]="user" *ngIf="active"></app-user>
     </div>
     <div class="vertical">
         <app-event-day></app-event-day>

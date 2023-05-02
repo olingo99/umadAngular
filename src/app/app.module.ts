@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
 import { EventDayComponent } from './event-day/event-day.component';
 import { FriendListComponent } from './friend-list/friend-list.component';
+import { EventComponent } from './event/event.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FriendListComponent } from './friend-list/friend-list.component';
     HomeComponent,
     UserComponent,
     EventDayComponent,
-    FriendListComponent
+    FriendListComponent,
+    EventComponent
   ],
   imports: [
     BrowserModule,

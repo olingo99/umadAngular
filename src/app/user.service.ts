@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { baseUrl } from './constants';
 
 export class User {
   'iduser': number;
@@ -28,38 +29,31 @@ export class User {
 })
 export class UserService {
 
-  baseUrl : string = 'http://localhost:3000';
-
-  user: User = new User();
-
   constructor(private http : HttpClient) { }
 
   tryLogin(Name:string, passWord: string): Observable<User> {
-    return this.http.post<User>(this.baseUrl+'/login', {Name, passWord});
+
+    return this.http.post<User>(baseUrl+'/login', {Name, passWord});
   }
 
   checkUserName(Name: string): Observable<User> {
-    // let params = new HttpParams().set("Name","Namezaerez"); //Create new HttpParams
-    // console.warn(this.baseUrl+`/user/name/${Name}`);
-    return this.http.get<User>(this.baseUrl+`/user/name/${Name}`);
+
+    return this.http.get<User>(baseUrl+`/user/name/${Name}`);
   }
 
   addUser(Name: string, passWord: string): Observable<User> {
-    return this.http.post<User>(this.baseUrl+'/user', {Name, passWord});
+    return this.http.post<User>(baseUrl+'/user', {Name, passWord});
   }
 
   getMood(Id: Number): Observable<Number>{
-    return this.http.get<Number>(this.baseUrl+`/user/${Id}/mood`);
+    return this.http.get<Number>(baseUrl+`/user/${Id}/mood`);
   }
 
-  setUserName(user: User):void{
-    this.user = user;
-  }
 
-  getUserName():User{
-    return this.user;
-  }
 
+  getUserById(Id: Number): Observable<User>{
+    return this.http.get<User>(baseUrl+`/user/${Id}`);
+  }
   
 }
   

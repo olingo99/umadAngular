@@ -4,6 +4,8 @@ import { User, UserService } from './../user.service';
 import { Router } from '@angular/router';
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import { AuthTokenService } from './../auth-token.service';
+
 
 
 @Component({
@@ -24,7 +26,8 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private authTokenService: AuthTokenService
   ) { }
 
   onSubmit(id: string): void {
@@ -38,9 +41,10 @@ export class LoginComponent {
     console.warn('Your order has been submitted', this.loginForm.value);
     if (this.loginForm.value.username !== null && this.loginForm.value.password !== null) {
       this.userService.tryLogin(this.loginForm.value.username!, this.loginForm.value.password!).subscribe({
-        next: (data) => { 
-          this.router.navigate(['/home']);
-          this.userService.setUserName(data);
+        next: (data) => {
+          console.warn(data)
+          this.authTokenService.setToken(data.token);
+          this.router.navigate(['/home'], { queryParams: { id: data.iduser } });
         },
         error: (error) => {
           this.resLabel = "Wrong username or password";

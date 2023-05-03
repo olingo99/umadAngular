@@ -6,12 +6,12 @@ import { baseUrl } from './constants';
 export class Category {
   'idcategory': number;
   'iduser': number;
-  'name': string;
+  'Name': string;
 
   constructor(){
     this.idcategory = 0;
     this.iduser = 0;
-    this.name = "";
+    this.Name = "";
   }
 }
 

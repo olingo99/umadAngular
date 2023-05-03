@@ -8,6 +8,6 @@
         <app-event-day [user]="user" *ngIf="active"></app-event-day>
     </div>
     <div class="vertical">
-       <app-friend-list></app-friend-list>
+       <app-friend-list [user]="user" *ngIf="active"></app-friend-list>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { Injectable, SkipSelf } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { baseUrl } from './constants';
@@ -38,4 +38,11 @@ export class EventService {
     console.log(baseUrl+`/user/${iduser}/events`);
     return this.http.get<Event[]>(baseUrl+`/user/${iduser}/events`);
   }
+
+  getLastEventsByUserId(iduser: number): Observable<Event> {
+    console.log("getLastEventsByUserId");
+    console.log(baseUrl+`/user/${iduser}/events/last`);
+    return this.http.get<Event>(baseUrl+`/user/${iduser}/LastEvent`);
+  }
+
 }

@@ -13,6 +13,7 @@ import { FriendListComponent } from './friend-list/friend-list.component';
 import { EventComponent } from './event/event.component';
 
 import { HTTPInterceptorService } from './httpinterceptor.service';
+import { FriendComponent } from './friend/friend.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HTTPInterceptorService } from './httpinterceptor.service';
     UserComponent,
     EventDayComponent,
     FriendListComponent,
-    EventComponent
+    EventComponent,
+    FriendComponent
   ],
   imports: [
     BrowserModule,

@@ -40,9 +40,7 @@ export class EventService {
   }
 
   getLastEventsByUserId(iduser: number): Observable<Event> {
-    console.log("getLastEventsByUserId");
-    console.log(baseUrl+`/user/${iduser}/events/last`);
-    return this.http.get<Event>(baseUrl+`/user/${iduser}/LastEvent`);
+    return this.http.get<Event>(baseUrl+`/user/${iduser}/lastevent`);
   }
 
 }

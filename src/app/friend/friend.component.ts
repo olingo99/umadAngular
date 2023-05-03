@@ -21,15 +21,15 @@ export class FriendComponent {
 
   ngOnInit() {
     this.imageSource = this.getSourceImage(this.friend.Mood);
-    // this.eventService.getLastEventsByUserId(this.friend.iduser).subscribe({
-    //   next : (data) => {
-    //     console.warn(data);
-    //     this.event = data;
-    //   },
-    //   error : (error) => {
-    //     console.log(error);
-    //   }
-    // });
+    this.eventService.getLastEventsByUserId(this.friend.iduser).subscribe({
+      next : (data) => {
+        console.warn(data);
+        this.event = data;
+      },
+      error : (error) => {
+        console.log(error);
+      }
+    });
 
   }
 

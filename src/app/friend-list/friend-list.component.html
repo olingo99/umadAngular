@@ -2,6 +2,6 @@
     Friend list
 </div>
 
-<div class = list>
-    <app-friend *ngFor="let friend of friends" [friend]="friend"></app-friend>
+<div class = list *ngIf="active">
+    <app-friend  *ngFor="let friend of friends" [friend]="friend" ></app-friend>
 </div>

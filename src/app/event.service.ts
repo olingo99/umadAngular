@@ -39,8 +39,8 @@ export class EventService {
     return this.http.get<Event[]>(baseUrl+`/user/${iduser}/events`);
   }
 
-  getLastEventsByUserId(iduser: number): Observable<Event> {
-    return this.http.get<Event>(baseUrl+`/user/${iduser}/lastevent`);
+  getLastEventsByUserId(iduser: number): Observable<Event[]> {
+    return this.http.get<Event[]>(baseUrl+`/user/${iduser}/lastevent`);
   }
 
 }

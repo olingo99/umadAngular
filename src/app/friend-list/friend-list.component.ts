@@ -14,6 +14,7 @@ export class FriendListComponent {
   @Input() user: User = new User();
   test = new User();
   friends: User[] = [this.test];
+  active : boolean = false;
 
   constructor(
     private friendsService: FriendsService
@@ -22,8 +23,10 @@ export class FriendListComponent {
   ngOnInit() {
     this.friendsService.getFriends(this.user.iduser).subscribe({
       next : (data) => {
+        console.warn("here is the friend list")
         console.warn(data);
         this.friends = data;
+        this.active = true;
       },
       error : (error) => {
         console.log(error);

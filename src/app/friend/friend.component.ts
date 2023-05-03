@@ -24,7 +24,7 @@ export class FriendComponent {
     this.eventService.getLastEventsByUserId(this.friend.iduser).subscribe({
       next : (data) => {
         console.warn(data);
-        this.event = data;
+        this.event = data[0];
       },
       error : (error) => {
         console.log(error);

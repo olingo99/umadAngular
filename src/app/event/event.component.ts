@@ -63,6 +63,11 @@ export class EventComponent {
     // });
   }
 
+  ngOnChanges() {
+    console.warn("user component")
+    this.ngOnInit();
+  }
+
   getColor(weight: number): string {
     return weight > 0 ? "green" : "red";
   }

@@ -29,6 +29,11 @@ export class UserComponent {
     this.isAddEventActive = this.user != this.connectedUser;
   }
 
+  ngOnChanges() {
+    console.warn("user component")
+    this.ngOnInit();
+  }
+
 
   getSourceImage(mood: number): string {
     if (mood <-90){

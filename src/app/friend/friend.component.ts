@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Input} from '@angular/core';
 import { User } from '../user.service';
 import { Event, EventService } from '../event.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-friend',
@@ -11,11 +12,13 @@ import { Event, EventService } from '../event.service';
 export class FriendComponent {
   @Input() friend: User = new User();
   event: Event = new Event();
+  active: boolean = false;
 
   imageSource: string = "assets/images/happy.png";
 
   constructor(
-    private eventService: EventService
+    private eventService: EventService,
+    private router: Router
   ) { }
 
 
@@ -25,6 +28,7 @@ export class FriendComponent {
       next : (data) => {
         console.warn(data);
         this.event = data[0];
+        this.active = true;
       },
       error : (error) => {
         console.log(error);
@@ -33,8 +37,17 @@ export class FriendComponent {
 
   }
 
+  ngOnChanges() {
+    console.warn("user component")
+    this.ngOnInit();
+  }
+
   friendClick() {
     console.warn("friend click");
+    this.router.navigate(['/home'], { queryParams: { id: this.friend.iduser } });
+  //   this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+  //     this.router.navigate(['/home'], { queryParams: { id: this.friend.iduser } });
+  // });
   }
 
   getSourceImage(mood: number): string {

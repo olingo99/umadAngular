@@ -34,4 +34,9 @@ export class FriendListComponent {
     }
     );
   }
+
+  ngOnChanges() {
+    console.warn("user component")
+    this.ngOnInit();
+  }
 }

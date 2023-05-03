@@ -68,4 +68,9 @@ export class EventDayComponent {
       },
     });
   }
+
+  ngOnChanges() {
+    console.warn("user component")
+    this.ngOnInit();
+  }
 }

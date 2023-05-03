@@ -1,9 +1,9 @@
-<div (click)="friendClick()" style="cursor:pointer">
-    <div>
-        <img [src]="imageSource" alt="UMad" width="99%" />
+<div (click)="friendClick()" style="cursor:pointer" class="vertical-separator">
+    <div class="separated">
+        <img [src]="imageSource" alt="UMad" width="40%" />
     </div>
-    <div>
+    <div class="separated">
         <p>{{friend.Name}}</p>
-        <p>{{event.Name}}</p>
+        <app-event *ngIf="active" [event]="event" [user]="friend"></app-event>
     </div>
 </div>

@@ -18,6 +18,7 @@ export class HomeComponent {
   ) { }
   //on init
   ngOnInit(): void {
+    console.warn('home init');
     // this.user = this.userService.getUserName();
     this.route.queryParams.subscribe((params) => {
       console.warn('params[] home')
@@ -37,4 +38,6 @@ export class HomeComponent {
     }
     );
   }
+
+  
 }

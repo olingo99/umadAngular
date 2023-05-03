@@ -65,6 +65,7 @@ export class EventDayComponent {
       error: (error) => {
         console.log('error');
         console.log(error);
+        this.events = [];
       },
     });
   }

@@ -30,6 +30,8 @@ export class FriendListComponent {
       },
       error : (error) => {
         console.log(error);
+        this.friends = [];
+        this.active = true;
       }
     }
     );

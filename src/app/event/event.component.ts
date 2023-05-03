@@ -22,6 +22,7 @@ export class EventComponent {
   ) { }
 
   ngOnInit(): void {
+    console.warn('event init');
     console.log(this.event);
 
     this.categoryService.getCategoryById(this.user.iduser, this.event.idcategory).subscribe({
@@ -32,6 +33,7 @@ export class EventComponent {
       error: (error) => {
         console.log('error');
         console.log(error);
+        this.category = new Category();
       },
     });
 

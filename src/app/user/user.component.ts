@@ -47,6 +47,7 @@ export class UserComponent {
 
   addEvent() {
     // this.router.navigate(['/addEvent', this.user.Id]);
+    this.router.navigate(['/eventCreation'], { queryParams: { userId: this.user.iduser } });
   }
 
   seeEvents() {

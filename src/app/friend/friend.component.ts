@@ -32,6 +32,8 @@ export class FriendComponent {
       },
       error : (error) => {
         console.log(error);
+        this.event = new Event();
+        this.active = true;
       }
     });
 

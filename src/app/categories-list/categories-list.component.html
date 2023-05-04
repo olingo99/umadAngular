@@ -1,1 +1,7 @@
-<p>categories-list works!</p>
+<div class="category-list vertical">
+    <div *ngFor="let category of categories">
+        <input type="radio" id="{{category.Name}}" name="category" value="{{category.Name}}"
+            (click)="onCategoryClick(category)" >
+        <label for="{{category.Name}}">{{category.Name}}</label>
+    </div>
+</div>

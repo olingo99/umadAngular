@@ -1,0 +1,48 @@
+.vertical-separator {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.text{
+  font-size: 200%;
+  font-weight: bold;
+}
+
+/* .event {
+  flex: 1;
+  margin-right: 10px;
+  width: 40%;
+}
+
+.weight {
+  flex: 1;
+  margin-right: 10px;
+  width: 20%;
+} */
+
+.weight{
+  padding-left: 10%;
+}
+
+input[type="text"] {
+  width: 80%;
+}
+
+input[type="number"] {
+  width: 20%;
+  
+}
+
+.form-group button {
+  padding: 5px 10px;
+  background-color: var(--color-button);
+  color: var(--color-text);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.form-group button:hover {
+  background-color: var(--color-hover);
+}

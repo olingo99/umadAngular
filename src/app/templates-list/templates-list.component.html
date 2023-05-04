@@ -1,1 +1,7 @@
-<p>templates-list works!</p>
+<div class = list *ngIf="active">
+    <div *ngFor="let template of eventTemplates">
+        <app-event-template  *ngIf="template.idcategory == category.idcategory" [template]="template" ></app-event-template>
+    </div>
+        <app-event-template *ngIf="category.idcategory != 0" [template]="newTemplate" ></app-event-template>
+    
+</div>

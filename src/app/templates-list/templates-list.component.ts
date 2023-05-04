@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import { Input } from '@angular/core';
+import { User} from '../user.service';
+import { EventTemplate, EventTemplateService } from '../event-template.service';
+import { Event } from '../event.service';
+import { Category } from '../category.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-templates-list',
@@ -6,5 +12,39 @@ import { Component } from '@angular/core';
   styleUrls: ['./templates-list.component.css']
 })
 export class TemplatesListComponent {
+
+  @Input() category: Category = new Category();
+  @Input() user: User = new User();
+
+  eventTemplates: EventTemplate[] = [];
+  active: boolean = false;
+  newTemplate: EventTemplate = new EventTemplate();
+
+  constructor(
+    private eventTemplateService: EventTemplateService
+  ) { }
+
+
+  ngOnInit(): void {
+    this.eventTemplateService.getEventTemplatesByUserId(this.user.iduser).subscribe({
+      next: (data) => {
+        console.warn('templatelist')
+        console.warn(data);
+        this.eventTemplates = data;
+        this.active = true;
+      },
+      error: (error) => {
+        console.log('error');
+        console.log(error);
+      }
+    });
+  }
+
+  ngOnChanges(): void {
+    this.ngOnInit();
+  }
+
+
+
 
 }

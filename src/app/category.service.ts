@@ -26,8 +26,12 @@ export class CategoryService {
   ) { }
 
   getCategoryById(userId:Number, catId: Number): Observable<Category>{
-
     return this.http.get<Category>(baseUrl+`/user/${userId}/category/${catId}`);
   }
+
+  getCategoriesByUserId(userId: Number): Observable<Category[]>{
+    return this.http.get<Category[]>(baseUrl+`/user/${userId}/category`);
+  }
+
 
 }

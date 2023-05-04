@@ -17,6 +17,7 @@ import { FriendComponent } from './friend/friend.component';
 import { EventCreationPageComponent } from './event-creation-page/event-creation-page.component';
 import { CategoriesListComponent } from './categories-list/categories-list.component';
 import { TemplatesListComponent } from './templates-list/templates-list.component';
+import { EventTemplateComponent } from './event-template/event-template.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { TemplatesListComponent } from './templates-list/templates-list.componen
     FriendComponent,
     EventCreationPageComponent,
     CategoriesListComponent,
-    TemplatesListComponent
+    TemplatesListComponent,
+    EventTemplateComponent
   ],
   imports: [
     BrowserModule,

@@ -39,5 +39,10 @@ export class HomeComponent {
     );
   }
 
+  ngOnChanges() {
+    console.warn('home component');
+    this.ngOnInit();
+  }
+
   
 }

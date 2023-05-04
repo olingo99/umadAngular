@@ -15,6 +15,8 @@ import { EventComponent } from './event/event.component';
 import { HTTPInterceptorService } from './httpinterceptor.service';
 import { FriendComponent } from './friend/friend.component';
 import { EventCreationPageComponent } from './event-creation-page/event-creation-page.component';
+import { CategoriesListComponent } from './categories-list/categories-list.component';
+import { TemplatesListComponent } from './templates-list/templates-list.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { EventCreationPageComponent } from './event-creation-page/event-creation
     FriendListComponent,
     EventComponent,
     FriendComponent,
-    EventCreationPageComponent
+    EventCreationPageComponent,
+    CategoriesListComponent,
+    TemplatesListComponent
   ],
   imports: [
     BrowserModule,

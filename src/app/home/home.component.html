@@ -3,9 +3,11 @@
 <div id="VerticaSeparator" >
     <div class="vertical">
         <app-user [user]="user" *ngIf="active"></app-user>
+        <!-- <app-user [user]="user"></app-user> -->
+
     </div>
     <div class="vertical">
-        <app-event-day [user]="user" *ngIf="active"></app-event-day>
+        <app-event-day [user]="user" *ngIf="active" ></app-event-day>
     </div>
     <div class="vertical">
        <app-friend-list [user]="user" *ngIf="active"></app-friend-list>

@@ -1,6 +1,8 @@
--   requete category qui part a chaque selection de category plutot que une fois pour tous
--   header qui se met pas sur requete post template  -> ce fait ignore car post sur /user
+-   requete category/template qui part a chaque selection de category plutot que une fois pour tous
+-   header qui se met pas sur requete post template  -> ce fait ignore car post sur /user  OK
 -   check date envoyée +2h
 - ajouter check sur post pour pas de doublon
 - ajouter des amis
-- permetre ajuster poid proposer template de moi
+- permetre ajuster poid proposer template de moi OK
+- permettre sueelemtn a moi meme d'ajuster mes poids + chekc qui fait quoi pour le reste
+-   refresh token

@@ -50,7 +50,18 @@ export class EventTemplateComponent {
     }
     else{
       this.template.ProposedWeight = +this.eventForm.value.Weight!;
-      this.submitRes.emit('Adjusted proposed wieght');
+      this.eventTemplateService.updateEventTemplate(this.template).subscribe({
+        next: (data) => {
+          console.warn('updateEventTemplate');
+          console.warn(data);
+          this.submitRes.emit('success');
+        },
+        error: (error) => {
+          console.log('error');
+          console.log(error);
+        }
+      });
+      // this.submitRes.emit('Adjusted proposed wieght');
     }
 
   }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthTokenService } from './auth-token.service';
+import { baseUrl } from './constants';
 
 
 @Injectable({
@@ -27,7 +28,8 @@ export class HTTPInterceptorService implements HttpInterceptor{
     // console.log(req.url);
     // console.log(this.authTokenService.getToken());
     const shouldIgnore = this.ignoredUrls.some(
-      ignored => req.url.includes(ignored.url) && req.method === ignored.method
+      // ignored => req.url.includes(ignored.url) && req.method === ignored.method
+      ignored => req.url === baseUrl+ignored.url && req.method === ignored.method
     );
 
     if (shouldIgnore) {

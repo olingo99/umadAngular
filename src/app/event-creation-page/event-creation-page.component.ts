@@ -14,6 +14,7 @@ export class EventCreationPageComponent {
   user: User = new User();
   category: Category = new Category();
   active: boolean = false;
+  refrechChild: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -32,6 +33,7 @@ export class EventCreationPageComponent {
           console.warn('user');
           console.warn(typeof data);
           this.active = true;
+          // this.refrechChild = true;
         },
         error: (error) => {
           console.log('error');
@@ -47,4 +49,13 @@ export class EventCreationPageComponent {
     console.warn(category);
     this.category = category;
   }
+
+  onRefreshEvent(res: boolean): void {
+    console.warn('refresh--------------------');
+    // this.refrechChild = false;
+
+    // this.refrechChild = true;
+    this.ngOnInit();
+  }
+
 }

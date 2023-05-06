@@ -8,7 +8,7 @@
         <app-categories-list *ngIf="active" [user]="user" (categoryChange)="onCategoryChange($event)"></app-categories-list>
     </div>
     <div class="vertical">
-        <app-templates-list *ngIf="active" [user]="user" [category]="category"></app-templates-list>
+        <app-templates-list *ngIf="active" [user]="user" [category]="category" (refrechEvent)="onRefreshEvent($event)"></app-templates-list>
     </div>
     <div class="vertical">
         <app-event-day *ngIf="active" [user]="user"  ></app-event-day>

@@ -1,4 +1,4 @@
-<form *ngIf="template.ideventTemplate != 0" [formGroup]="eventForm" (ngSubmit)="onSubmit()" class = "form-group">
+<form *ngIf="template.ideventTemplate != 0" [formGroup]="eventForm" (ngSubmit)="onSubmit($event.submitter.id)" class = "form-group">
 <div class = "vertical-separator" >
     <div class = "event text">
         <!-- <input type="text" formControlName="Name" id="Name"> -->
@@ -9,6 +9,7 @@
     </div>
     <div>
         <button type="submit" id="Add">Add</button>
+        <button type="submit" id="Adjust">Adjust</button>
     </div>
 
 </div>

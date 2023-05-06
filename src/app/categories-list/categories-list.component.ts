@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Category, CategoryService } from '../category.service';
 import { User } from '../user.service';
 import { Input, Output, EventEmitter } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-categories-list',
@@ -15,9 +16,16 @@ export class CategoriesListComponent {
   categories: Category[] = [];
   active: boolean = false;
 
+  resString: string = '';
+
   constructor(
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private formBuilder: FormBuilder
   ) { }
+
+  categoryForm = this.formBuilder.group({
+    Name: '',
+  });
 
   ngOnInit(): void {
     this.getCategories();
@@ -40,6 +48,26 @@ export class CategoriesListComponent {
     console.warn('category clicked');
     console.warn(category);
     this.categoryChange.emit(category);
+  }
+
+  onSubmitNewCategory(): void {
+    let cat = new Category();
+    cat.iduser = this.user.iduser;
+    cat.Name = this.categoryForm.value.Name!;
+    console.warn('new category');
+    console.warn(cat);
+    this.categoryService.addCategory(cat).subscribe({
+      next: (data) => {
+        console.warn('category added');
+        this.resString = 'Category added';
+        this.ngOnInit();
+      },
+      error: (error) => {
+        console.log('error');
+        console.log(error);
+        this.resString = 'Error adding category';
+      }
+    });
   }
 
 }

@@ -33,5 +33,10 @@ export class CategoryService {
     return this.http.get<Category[]>(baseUrl+`/user/${userId}/category`);
   }
 
+  addCategory(category: Category): Observable<Category>{
+    let iduser = category.iduser;
+    let Name = category.Name;
+    return this.http.post<Category>(baseUrl+`/user/${category.iduser}/category`, {iduser, Name});
+  }
 
 }

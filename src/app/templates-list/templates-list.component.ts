@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Input, Output } from '@angular/core';
+import { Input, Output, EventEmitter} from '@angular/core';
 import { User} from '../user.service';
 import { EventTemplate, EventTemplateService } from '../event-template.service';
 import { Event } from '../event.service';
@@ -15,6 +15,8 @@ export class TemplatesListComponent {
 
   @Input() category: Category = new Category();
   @Input() user: User = new User();
+
+  @Output() refrechEvent = new EventEmitter<boolean>();
 
   eventTemplates: EventTemplate[] = [];
   active: boolean = false;
@@ -49,7 +51,9 @@ export class TemplatesListComponent {
 
 
   onSubmitRes(res:string): void {
+    // this.ngOnInit();
     this.resString = res;
+    this.refrechEvent.emit(true);
   }
 
 }

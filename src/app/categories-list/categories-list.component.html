@@ -4,4 +4,17 @@
             (click)="onCategoryClick(category)" >
         <label for="{{category.Name}}">{{category.Name}}</label>
     </div>
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmitNewCategory()" class = "form-group">
+        <div class = "vertical-separator" >
+            <div class = "event text">
+                <input type="text" formControlName="Name" id="Name">
+    
+            </div>
+            <div>
+                <button type="submit" id="Add">Add</button>
+            </div>
+        
+        </div>
+    </form>
+    <p>{{resString}}</p>
 </div>

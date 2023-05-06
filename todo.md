@@ -1,0 +1,6 @@
+-   requete category qui part a chaque selection de category plutot que une fois pour tous
+-   header qui se met pas sur requete post template  -> ce fait ignore car post sur /user
+-   check date envoyée +2h
+- ajouter check sur post pour pas de doublon
+- ajouter des amis
+- permetre ajuster poid proposer template de moi

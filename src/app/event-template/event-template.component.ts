@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
 import { EventTemplate,EventTemplateService } from '../event-template.service';
+import { Event, EventService } from '../event.service';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -16,7 +17,8 @@ export class EventTemplateComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private eventTemplateService: EventTemplateService
+    private eventTemplateService: EventTemplateService,
+    private eventService: EventService
   ) { }
   
   ngOnInit(): void {
@@ -36,9 +38,21 @@ export class EventTemplateComponent {
     return weight > 0 ? "green" : "red";
   }
 
-  onSubmit(): void {
+  onSubmit(id:string): void {
     console.warn('submitted');
     console.warn(this.eventForm.value);
+    if(id == "add"){
+      this.newTemplate.Name = this.template.Name;
+      this.newTemplate.ProposedWeight = +this.eventForm.value.Weight!;
+      this.newTemplate.iduser = this.template.iduser;
+      this.newTemplate.idcategory = this.template.idcategory;
+      this.sendEvent(this.newTemplate);
+    }
+    else{
+      this.template.ProposedWeight = +this.eventForm.value.Weight!;
+      this.submitRes.emit('Adjusted proposed wieght');
+    }
+
   }
 
   onSubmitNewTemplate(): void {
@@ -54,18 +68,35 @@ export class EventTemplateComponent {
       next: (data) => {
         console.warn('addEventTemplate');
         console.warn(data);
-        // this.sendEvent(this.newTemplate);
-        this.submitRes.emit('success');
+        this.sendEvent(this.newTemplate);
+        // this.submitRes.emit('success');
       },
       error: (error) => {
         console.log('error');
         console.log(error);
       }
     }); 
+    //clear form inputs 
+    this.newEventForm.setValue({
+      Name: '',
+      Weight: ''
+    });
   }
 
-  // sendEvent(template: EventTemplate): void {
-  //   this.eve
+  sendEvent(template: EventTemplate): void {
+    this.eventService.addEvent(template).subscribe({
+      next: (data) => {
+        console.warn('addEvent');
+        console.warn(data);
+        this.submitRes.emit('success');
+      },
+      error: (error) => {
+        console.log('error');
+        console.log(error);
+      }
+    });
+
+  }
 
   onChanges(): void {
     this.eventForm.setValue({

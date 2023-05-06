@@ -11,6 +11,7 @@ import { FormBuilder } from '@angular/forms';
 export class EventTemplateComponent {
 
   @Input() template: EventTemplate = new EventTemplate();
+  newTemplate: EventTemplate = new EventTemplate();
 
 
   constructor(
@@ -27,7 +28,7 @@ export class EventTemplateComponent {
 
   newEventForm = this.formBuilder.group({
     Name : '',
-    Weight: ''
+    Weight:''
   });
 
   getColor(weight: number): string {
@@ -37,6 +38,16 @@ export class EventTemplateComponent {
   onSubmit(): void {
     console.warn('submitted');
     console.warn(this.eventForm.value);
+  }
+
+  onSubmitNewTemplate(): void {
+    this.newTemplate.Name = this.newEventForm.value.Name!;
+    this.newTemplate.ProposedWeight = +this.newEventForm.value.Weight!;
+    this.newTemplate.iduser = this.template.iduser;
+    this.newTemplate.idcategory = this.template.idcategory;
+
+    console.warn('submitted');
+    console.warn(this.newTemplate);
   }
 
   onChanges(): void {

@@ -26,6 +26,8 @@ export class TemplatesListComponent {
 
 
   ngOnInit(): void {
+    this.newTemplate.idcategory = this.category.idcategory;
+    this.newTemplate.iduser = this.user.iduser;
     this.eventTemplateService.getEventTemplatesByUserId(this.user.iduser).subscribe({
       next: (data) => {
         console.warn('templatelist')

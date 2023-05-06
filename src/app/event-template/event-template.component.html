@@ -14,14 +14,14 @@
 </div>
 </form>
 
-<form *ngIf="template.ideventTemplate == 0" [formGroup]="newEventForm" (ngSubmit)="onSubmit()" class = "form-group">
+<form *ngIf="template.ideventTemplate == 0" [formGroup]="newEventForm" (ngSubmit)="onSubmitNewTemplate()" class = "form-group">
     <div class = "vertical-separator" >
         <div class = "event text">
             <input type="text" formControlName="Name" id="Name">
 
         </div>
         <div class = "weight" >
-            <input type="number" formControlName="Weight" id="Weight" >
+            <input type="number" formControlName="Weight" id="Weight" value="" >
         </div>
         <div>
             <button type="submit" id="Add">Add</button>

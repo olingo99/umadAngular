@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input,Output, EventEmitter } from '@angular/core';
 import { Event } from '../event.service';
 import { CategoryService, Category } from '../category.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../user.service';
+
 
 @Component({
   selector: 'app-event',
@@ -13,6 +14,7 @@ export class EventComponent {
   @Input() event: Event = new Event();
   // @Input() event: string= "";
   @Input() user: User = new User();
+
 
   category: Category = new Category();
 

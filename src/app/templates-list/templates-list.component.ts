@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Input } from '@angular/core';
+import { Input, Output } from '@angular/core';
 import { User} from '../user.service';
 import { EventTemplate, EventTemplateService } from '../event-template.service';
 import { Event } from '../event.service';
@@ -19,6 +19,7 @@ export class TemplatesListComponent {
   eventTemplates: EventTemplate[] = [];
   active: boolean = false;
   newTemplate: EventTemplate = new EventTemplate();
+  resString: string = '';
 
   constructor(
     private eventTemplateService: EventTemplateService
@@ -47,6 +48,8 @@ export class TemplatesListComponent {
   }
 
 
-
+  onSubmitRes(res:string): void {
+    this.resString = res;
+  }
 
 }

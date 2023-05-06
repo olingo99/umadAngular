@@ -32,4 +32,12 @@ export class EventTemplateService {
     return this.http.get<EventTemplate[]>(baseUrl+`/user/${iduser}/templates`);
   }
 
+  addEventTemplate(eventTemplate: EventTemplate): Observable<EventTemplate> {
+    let Name = eventTemplate.Name;
+    let iduser = eventTemplate.iduser;
+    let ProposedWeight = eventTemplate.ProposedWeight;
+    let idcategory = eventTemplate.idcategory;
+    return this.http.post<EventTemplate>(baseUrl+`/user/${eventTemplate.iduser}/templates`, {Name, iduser, idcategory, ProposedWeight});
+  }
+
 }

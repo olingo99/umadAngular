@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Input } from '@angular/core';
-import { EventTemplate } from '../event-template.service';
+import { Input, Output, EventEmitter } from '@angular/core';
+import { EventTemplate,EventTemplateService } from '../event-template.service';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -12,10 +12,11 @@ export class EventTemplateComponent {
 
   @Input() template: EventTemplate = new EventTemplate();
   newTemplate: EventTemplate = new EventTemplate();
-
+  @Output() submitRes = new EventEmitter<string>();
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private eventTemplateService: EventTemplateService
   ) { }
   
   ngOnInit(): void {
@@ -48,7 +49,23 @@ export class EventTemplateComponent {
 
     console.warn('submitted');
     console.warn(this.newTemplate);
+
+    this.eventTemplateService.addEventTemplate(this.newTemplate).subscribe({
+      next: (data) => {
+        console.warn('addEventTemplate');
+        console.warn(data);
+        // this.sendEvent(this.newTemplate);
+        this.submitRes.emit('success');
+      },
+      error: (error) => {
+        console.log('error');
+        console.log(error);
+      }
+    }); 
   }
+
+  // sendEvent(template: EventTemplate): void {
+  //   this.eve
 
   onChanges(): void {
     this.eventForm.setValue({

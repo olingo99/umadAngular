@@ -26,6 +26,7 @@ export class FriendComponent {
     this.imageSource = this.getSourceImage(this.friend.Mood);
     this.eventService.getLastEventsByUserId(this.friend.iduser).subscribe({
       next : (data) => {
+        console.warn("last event data ");
         console.warn(data);
         this.event = data[0];
         this.active = true;

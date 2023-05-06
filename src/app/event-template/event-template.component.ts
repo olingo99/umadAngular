@@ -41,7 +41,7 @@ export class EventTemplateComponent {
   onSubmit(id:string): void {
     console.warn('submitted');
     console.warn(this.eventForm.value);
-    if(id == "add"){
+    if(id == "Add"){
       this.newTemplate.Name = this.template.Name;
       this.newTemplate.ProposedWeight = +this.eventForm.value.Weight!;
       this.newTemplate.iduser = this.template.iduser;

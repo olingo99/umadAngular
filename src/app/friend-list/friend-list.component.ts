@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { User} from '../user.service';
 import {Input} from '@angular/core';
-import { FriendsService } from '../friends.service';
+import { FriendsService, FriendMap } from '../friends.service';
+import { Observable } from 'rxjs';
+import { FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -15,10 +17,15 @@ export class FriendListComponent {
   test = new User();
   friends: User[] = [this.test];
   active : boolean = false;
-
+  friendRequests: User[] = [];
   constructor(
-    private friendsService: FriendsService
+    private friendsService: FriendsService,
+    private formBuilder: FormBuilder
   ) { }
+
+  friendForm = this.formBuilder.group({
+    friendName: ''
+  });
 
   ngOnInit() {
     this.friendsService.getFriends(this.user.iduser).subscribe({
@@ -26,12 +33,14 @@ export class FriendListComponent {
         console.warn("here is the friend list")
         console.warn(data);
         this.friends = data;
-        this.active = true;
+        // this.active = true;
+        this.getRequests();
       },
       error : (error) => {
         console.log(error);
         this.friends = [];
-        this.active = true;
+        this.getRequests();
+        // this.active = true;
       }
     }
     );
@@ -40,5 +49,37 @@ export class FriendListComponent {
   ngOnChanges() {
     console.warn("user component")
     this.ngOnInit();
+  }
+
+  onSubmitFriendForm() {
+    console.warn("friend form submitted");
+    console.warn(this.friendForm.value);
+    this.friendsService.addFriend(this.user.iduser, this.friendForm.value.friendName!).subscribe({
+      next : (data) => {
+        console.warn("here is the friend list")
+        console.warn(data);
+        // this.ngOnInit();
+      },
+      error : (error) => {
+        console.log("error fiends");
+        console.log(error);
+      }
+    });
+  }
+
+  getRequests():void {
+    this.friendsService.getFriendRequests(this.user.iduser).subscribe({
+      next : (data) => {
+        console.warn("here is the friend request list")
+        console.warn(data);
+        this.friendRequests = data;
+        this.active = true;
+      },
+      error : (error) => {
+        console.log(error);
+        this.friendRequests = [];
+        this.active = true;
+      }
+    });
   }
 }

@@ -41,6 +41,7 @@ export class TemplatesListComponent {
       error: (error) => {
         console.log('error');
         console.log(error);
+        this.active = true;
       }
     });
   }

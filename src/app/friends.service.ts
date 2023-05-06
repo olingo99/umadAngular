@@ -19,6 +19,20 @@ import { User } from './user.service';
 //   }
 // }
 
+export class FriendMap{
+  'idfriendsmap': number;
+  'iduser': number;
+  'date': Date;
+  'idfriend': number;
+
+  constructor(){
+    this.idfriendsmap = 0;
+    this.iduser = 0;
+    this.date = new Date();
+    this.idfriend = 0;
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -28,6 +42,18 @@ export class FriendsService {
 
   getFriends(Id: Number): Observable<User[]>{
     return this.http.get<User[]>(baseUrl+`/user/${Id}/friends`);
+  }
+
+  addFriend(IdUser: Number, Name: String): Observable<FriendMap>{
+    return this.http.post<FriendMap>(baseUrl+`/user/${IdUser}/friends`, {username: Name});
+  }
+
+  acceptFriendRequest(IdUser: Number, IdFriend: Number): Observable<FriendMap>{
+    return this.http.put<FriendMap>(baseUrl+`/user/${IdUser}/friends`, {idfriend: IdFriend});
+  }
+
+  getFriendRequests(Id: Number): Observable<User[]>{
+    return this.http.get<User[]>(baseUrl+`/user/${Id}/friendRequests`);
   }
 
 }

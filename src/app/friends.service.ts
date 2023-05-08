@@ -48,8 +48,12 @@ export class FriendsService {
     return this.http.post<FriendMap>(baseUrl+`/user/${IdUser}/friends`, {username: Name});
   }
 
-  acceptFriendRequest(IdUser: Number, IdFriend: Number): Observable<FriendMap>{
-    return this.http.put<FriendMap>(baseUrl+`/user/${IdUser}/friends`, {idfriend: IdFriend});
+  acceptFriendRequest(IdUser: Number, IdFriend: Number): Observable<User>{
+    return this.http.post<User>(baseUrl+`/user/${IdUser}/acceptFriend`, {idfriend: IdFriend});
+  }
+
+  declineFriendRequest(IdUser: Number, IdFriend: Number): Observable<User>{
+    return this.http.post<User>(baseUrl+`/user/${IdUser}/declineFriend`, {idfriend: IdFriend});
   }
 
   getFriendRequests(Id: Number): Observable<User[]>{

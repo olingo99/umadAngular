@@ -68,18 +68,47 @@ export class FriendListComponent {
   }
 
   getRequests():void {
+    console.warn("getting friend requests");
     this.friendsService.getFriendRequests(this.user.iduser).subscribe({
       next : (data) => {
-        console.warn("here is the friend request list")
+        console.warn("here is the friend request list");
         console.warn(data);
         this.friendRequests = data;
         this.active = true;
       },
       error : (error) => {
+        console.warn("here is the friend request list error");
         console.log(error);
         this.friendRequests = [];
         this.active = true;
       }
     });
+  }
+
+  acceptFriendRequest(friendRequest: User):void{
+    this.friendsService.acceptFriendRequest(this.user.iduser, friendRequest.iduser).subscribe({
+      next : (data) => {
+        console.warn("accepeted friend request")
+        console.warn(data);
+        this.ngOnInit();
+      },
+      error : (error) => {
+        console.log(error);
+      }
+    });
+  }
+
+  declineFriendRequest(friendRequest:User):void{
+    this.friendsService.declineFriendRequest(this.user.iduser, friendRequest.iduser).subscribe({
+      next : (data) => {
+        console.warn("declined friend request")
+        console.warn(data);
+        this.ngOnInit();
+      },
+      error : (error) => {
+        console.log(error);
+      }
+    });
+
   }
 }

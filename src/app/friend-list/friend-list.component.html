@@ -22,5 +22,7 @@
     <p>Friend requests</p>
     <div *ngFor="let friendRequest of friendRequests">
         <p>{{friendRequest.Name}}</p>
+        <button (click)="acceptFriendRequest(friendRequest)">Accept</button>
+        <button (click)="declineFriendRequest(friendRequest)">Decline</button>
     </div>
 </div>

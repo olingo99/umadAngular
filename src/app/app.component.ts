@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'umadAngularfeur';
+
+  displayTopBar=false;
+  // test = ;
+
+  constructor(
+    public router: Router ) { }
+
+  // ngOnChanges() {
+  //   // test = this.router.url
+  // }
 
 }

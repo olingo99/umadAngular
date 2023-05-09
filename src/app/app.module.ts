@@ -32,7 +32,7 @@ import { EventTemplateComponent } from './event-template/event-template.componen
     EventCreationPageComponent,
     CategoriesListComponent,
     TemplatesListComponent,
-    EventTemplateComponent
+    EventTemplateComponent,
   ],
   imports: [
     BrowserModule,

@@ -61,6 +61,7 @@ export class CategoriesListComponent {
         console.warn('category added');
         this.resString = 'Category added';
         this.ngOnInit();
+        this.categoryForm.setValue({Name:''})
       },
       error: (error) => {
         console.log('error');

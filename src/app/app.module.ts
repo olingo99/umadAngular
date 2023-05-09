@@ -18,9 +18,8 @@ import { EventCreationPageComponent } from './event-creation-page/event-creation
 import { CategoriesListComponent } from './categories-list/categories-list.component';
 import { TemplatesListComponent } from './templates-list/templates-list.component';
 import { EventTemplateComponent } from './event-template/event-template.component';
-// import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
-// import { AuthTokenService } from './auth-token.service';
 import { config } from 'rxjs';
+import { AllEventsComponent } from './all-events/all-events.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +35,7 @@ import { config } from 'rxjs';
     CategoriesListComponent,
     TemplatesListComponent,
     EventTemplateComponent,
+    AllEventsComponent,
   ],
   imports: [
     BrowserModule,

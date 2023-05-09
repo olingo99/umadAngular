@@ -13,6 +13,6 @@
 -   changer le mood vers unemoyenne de 0 a minuit
 -   ajouter aigreur rate, qui reduit l'aigreur toutes les heures 
 
--   reset form category create
+-   reset form category create OK
 
 -   builder.control validator (compose, required, min,...)

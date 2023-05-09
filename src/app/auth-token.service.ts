@@ -22,4 +22,10 @@ export class AuthTokenService {
     // return this.token;
     return sessionStorage.getItem('token')!;
   }
+
+  removeToken() {
+    console.log("removeToken");
+    // this.token = "";
+    sessionStorage.removeItem('token');
+  }
 }

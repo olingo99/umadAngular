@@ -7,3 +7,4 @@
 - permettre sueelemtn a moi meme d'ajuster mes poids + chekc qui fait quoi pour le reste
 -   refresh token
 - ajouter accept form et amelioer visuel frind request
+-    tout passer en onchanges plutot que if active

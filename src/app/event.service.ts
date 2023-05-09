@@ -53,4 +53,8 @@ export class EventService {
     return this.http.post<Event>(baseUrl+`/user/${event.iduser}/events`, {Name, iduser, idcategory, Weight, Date:now});
   }
 
+  getEventsByDate(iduser: number, date: Date): Observable<Event[]> {
+    return this.http.get<Event[]>(baseUrl+`/user/${iduser}/events/${date}`);
+  }
+
 }

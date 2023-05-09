@@ -18,6 +18,9 @@ import { EventCreationPageComponent } from './event-creation-page/event-creation
 import { CategoriesListComponent } from './categories-list/categories-list.component';
 import { TemplatesListComponent } from './templates-list/templates-list.component';
 import { EventTemplateComponent } from './event-template/event-template.component';
+// import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
+// import { AuthTokenService } from './auth-token.service';
+import { config } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -39,9 +42,18 @@ import { EventTemplateComponent } from './event-template/event-template.componen
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    // JwtModule.forRoot({
+    //   config:{
+    //     tokenGetter:function tokenGetter(){
+    //       return AuthTokenService
+    //     }
+    //   }
+    // }
+    // ) ,
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: HTTPInterceptorService, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: HTTPInterceptorService, multi: true},
+    // {provide: JwtModule, useValue: JWT_OPTIONS}, JwtModule
   ],
   bootstrap: [AppComponent]
 })

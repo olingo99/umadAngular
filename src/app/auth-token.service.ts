@@ -8,6 +8,7 @@ export class AuthTokenService {
   constructor() { }
 
   private token: string = "";
+  
 
   setToken(token: string) {
     console.log("setToken");

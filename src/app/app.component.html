@@ -1,4 +1,4 @@
 <div class="topBar" *ngIf="!this.router.url.includes('login')">
-    <div class="titleText"> UMad?</div>
+    <div (click)="goHome()" class="titleText"> UMad?</div>
 </div>
 <router-outlet></router-outlet>

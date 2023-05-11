@@ -4,6 +4,7 @@ import { User } from '../user.service';
 import { Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
+import { FormBuilder, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -20,8 +21,15 @@ export class AllEventsComponent {
   constructor(
     private eventService: EventService,
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private formBuilder: FormBuilder,
+    // private formControl: FormControl
   ) { }
+
+  //form to select date
+  dateForm = this.formBuilder.group({
+    date: new FormControl<Date>(new Date(), {nonNullable: true})
+  });
 
 
 
@@ -34,7 +42,8 @@ export class AllEventsComponent {
           this.user = data;
           console.warn('user');
           console.warn(typeof data);
-          this.getEvents(this.user.iduser);
+          this.active = true;
+          // this.getEvents(this.user.iduser);
         },
         error: (error) => {
           console.log('error');
@@ -44,9 +53,18 @@ export class AllEventsComponent {
     );
   }
 
+  onSubmit(): void {
+    this.getEvents();
+  }
 
-  getEvents(id:number): void {
-    this.eventService.getTodayEventsByUserId(id).subscribe({
+  getEvents(): void {
+    // console.warn('getEvents()');
+    // console.warn(this.dateForm.value.date);
+    
+    let date = this.dateForm.value.date!;
+    // console.warn(date.toString().replaceAll('-',''));
+    this.eventService.getEventsByDate(this.user.iduser,date).subscribe({
+
       next: (data) => {
         console.warn(data)
         this.events = data;

@@ -29,7 +29,9 @@
     width: 100%;
     height: 20px; /* adjust this value as needed */
     /* background-color: #ddd;*/
-    background: -webkit-linear-gradient(0deg, green 0%, yellow 50%, red 100%);
+    background: -webkit-linear-gradient(0deg, red 0%, yellow 50%, green 100%);
+    /* background: -webkit-linear-gradient(0deg, green 0%, yellow 50%, red 100%); */
+
   }
   
 .progress-bar::before {
@@ -38,11 +40,15 @@
     /* shift to the left*/
 
     top: 0;
-    right: 0;
+    /* right: 0; */
+    left: var(--progress);
     height: 100%;
-    width: var(--progress); /* adjust this value as needed */
+    /* width: var(--progress); */
+    width: 1%;
     /* background-color: blue; */
-    background: white;
+    /* background: white; */
+    background: black;
+
   }
 
 .button-separator {

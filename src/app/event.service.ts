@@ -54,7 +54,8 @@ export class EventService {
   }
 
   getEventsByDate(iduser: number, date: Date): Observable<Event[]> {
-    return this.http.get<Event[]>(baseUrl+`/user/${iduser}/events/${date}`);
+    let Sdate = date.toString().replaceAll('-','')
+    return this.http.get<Event[]>(baseUrl+`/user/${iduser}/events/${Sdate}`);
   }
 
 }

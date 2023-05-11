@@ -1,3 +1,13 @@
+<form [formGroup]="dateForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="date">Date:</label>
+      <input type="date" id="date" formControlName="date">
+    </div>
+    <div>
+      <button type="submit">Submit</button>
+    </div>
+</form>
+
 <div *ngIf="active">
 <app-event *ngFor="let event of events" [event]="event" [user]="user"></app-event>
 </div>

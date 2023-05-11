@@ -24,7 +24,9 @@ export class UserComponent {
     console.warn("user component")
     console.warn(this.user);
     console.warn(this.user.Mood);
-    this.elementRef.nativeElement.style.setProperty('--progress', ((100-this.user.Mood)/2) + '%');
+    // this.elementRef.nativeElement.style.setProperty('--progress', ((100-this.user.Mood)/2) + '%');
+    this.elementRef.nativeElement.style.setProperty('--progress', ((100+this.user.Mood)/2) + '%');
+
     this.imageSource = this.getSourceImage(this.user.Mood);
     this.isAddEventActive = this.user != this.connectedUser;
   }
@@ -36,13 +38,13 @@ export class UserComponent {
 
 
   getSourceImage(mood: number): string {
-    if (mood <-90){
+    if (mood >90){
       return "assets/images/verryHappy.png";
     }
-    if (mood <=0){
+    if (mood >=0){
       return "assets/images/happy.png";
     }
-    return `assets/images/sad${Math.ceil(mood/14)}.png`;
+    return `assets/images/sad${Math.ceil(-mood/14)}.png`;
   }
 
   addEvent() {

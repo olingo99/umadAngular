@@ -16,3 +16,7 @@
 -   reset form category create OK
 
 -   builder.control validator (compose, required, min,...)
+
+-check username au login marche plus car je veux une full egalité dans l'intercepteur
+
+- add check username to friendrequezst

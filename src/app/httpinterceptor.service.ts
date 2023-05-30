@@ -24,8 +24,8 @@ export class HTTPInterceptorService implements HttpInterceptor{
     // if (req.url.includes('login') || (req.url.includes('user') && req.method == 'POST')) {
     //   return next.handle(req);
     // }
-    console.warn("intercept");
-    // console.log(req.url);
+    console.warn("intercepteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+    console.log(req.url);
     // console.log(this.authTokenService.getToken());
     const shouldIgnore = this.ignoredUrls.some(
       // ignored => req.url.includes(ignored.url) && req.method === ignored.method

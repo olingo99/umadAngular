@@ -1,12 +1,13 @@
 .vertical-separator {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .text{
   font-size: 200%;
   font-weight: bold;
+  flex-grow: 1;
 }
 
 /* .event {
@@ -21,17 +22,18 @@
   width: 20%;
 } */
 
-.weight{
+/* .weight{
   padding-left: 10%;
-}
+} */
 
 input[type="text"] {
   width: 80%;
+  flex-grow: 1;
 }
 
 input[type="number"] {
   width: 30%;
-  
+  flex-grow: 1;
 }
 
 .form-group button {
@@ -41,6 +43,7 @@ input[type="number"] {
   border: none;
   border-radius: 3px;
   cursor: pointer;
+  flex-grow: 1;
 }
 
 .form-group button:hover {

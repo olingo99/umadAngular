@@ -1,9 +1,11 @@
 <div class="category-list vertical">
+    <p>Categories</p>
     <div *ngFor="let category of categories">
         <input type="radio" id="{{category.Name}}" name="category" value="{{category.Name}}"
             (click)="onCategoryClick(category)" >
         <label for="{{category.Name}}">{{category.Name}}</label>
     </div>
+    <p>Create new category</p>
     <form [formGroup]="categoryForm" (ngSubmit)="onSubmitNewCategory()" class = "form-group">
         <div class = "vertical-separator" >
             <div class = "event text">

@@ -1,7 +1,9 @@
 <div class = list *ngIf="active">
+    <p *ngIf="category.idcategory != 0 && eventTemplates.length != 0">Event Templates</p>
     <div *ngFor="let template of eventTemplates">
         <app-event-template  *ngIf="template.idcategory == category.idcategory" [template]="template" (submitRes)="onSubmitRes($event)" ></app-event-template>
     </div>
+        <p *ngIf="category.idcategory != 0" >Create new template</p>
         <app-event-template *ngIf="category.idcategory != 0" [template]="newTemplate" (submitRes)="onSubmitRes($event)"></app-event-template>
         <p id="resLabel">{{resString}}</p>
 

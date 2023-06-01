@@ -44,7 +44,7 @@
     left: var(--progress);
     height: 100%;
     /* width: var(--progress); */
-    width: 1%;
+    width: 0.5%;
     /* background-color: blue; */
     /* background: white; */
     background: black;

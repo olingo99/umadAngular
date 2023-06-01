@@ -33,12 +33,13 @@ label, p {
 input {
   font-size: 18px;
   padding: 10px;
-  width: 100%;
+  /* width: 100%; */
+  flex-grow: 1;
   border: none;
   border-radius: 5px;
   background-color: var(--color-link);
   color: var(--color-text);
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 button {
@@ -50,6 +51,7 @@ button {
   background-color: var(--color-button);
   /* color: white; */
   color: var(--color-text);
+  margin: 10px;
 }
 
 button:hover {

@@ -3,9 +3,9 @@
 </div>
 
 <!-- <div class = list *ngIf="active"> -->
-<div>
+<div id="usernameform">
     <p>Add a friend!</p>
-    <form [formGroup]="friendForm" (ngSubmit)="onSubmitFriendForm()" class = "form-group">
+    <form [formGroup]="friendForm" (ngSubmit)="onSubmitFriendForm()" class = "form-group" >
         <div>
               <!-- <label for="username">Username</label> -->
               <input type="text" formControlName="friendName" id="friendName" placeholder="UserName">

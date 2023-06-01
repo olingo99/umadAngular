@@ -1,14 +1,17 @@
 .vertical-separator{
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    /* justify-content: left; */
     align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #000000;
 }
 
 img{
-    margin-right: 150px;
+    margin: 10px;
 }
 
 .separated{
     justify-content: left;
+    width: 10vw;
 }

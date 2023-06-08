@@ -60,4 +60,8 @@ export class EventService {
     return this.http.get<Event[]>(baseUrl+`/user/${iduser}/events/${Sdate}`);
   }
 
+  deleteEventById(iduser: number, idevent:number): Observable<Event[]> {
+
+    return this.http.delete<Event[]>(baseUrl+`/user/${iduser}/event/${idevent}`);
+  }
 }

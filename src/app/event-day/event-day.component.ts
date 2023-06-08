@@ -74,4 +74,10 @@ export class EventDayComponent {
     console.warn("user component")
     this.ngOnInit();
   }
+
+  reload(event : boolean){
+    console.warn('reload event')
+    console.warn(event)
+    this.ngOnInit();
+  }
 }

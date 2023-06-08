@@ -3,5 +3,5 @@
 </div>
 
 <div class = list>
-    <app-event *ngFor="let event of events" [event]="event" [user]="user"></app-event>
+    <app-event *ngFor="let event of events" [event]="event" [user]="user" (deleteEventEvent)="reload($event)"></app-event>
 </div>

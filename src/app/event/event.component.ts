@@ -3,6 +3,7 @@ import { Event } from '../event.service';
 import { CategoryService, Category } from '../category.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../user.service';
+import { EventService } from '../event.service';
 
 
 @Component({
@@ -14,12 +15,15 @@ export class EventComponent {
   @Input() event: Event = new Event();
   // @Input() event: string= "";
   @Input() user: User = new User();
+  @Output() deleteEventEvent = new EventEmitter<boolean>();
+  @Input() friend: boolean = false;
 
 
   category: Category = new Category();
 
   constructor(
     private categoryService: CategoryService,
+    private eventService: EventService,
     private route: ActivatedRoute
   ) { }
 
@@ -74,5 +78,18 @@ export class EventComponent {
 
   getColor(weight: number): string {
     return weight > 0 ? "green" : "red";
+  }
+
+  deleteEvent() {
+    this.eventService.deleteEventById(this.user.iduser, this.event.idevent).subscribe({
+      next: (data) => {
+        console.warn(data)
+        console.warn("delete event")
+        this.deleteEventEvent.emit(true);
+      },
+      error: (error) => {
+        this.deleteEventEvent.emit(false);
+      },
+    });
   }
 }

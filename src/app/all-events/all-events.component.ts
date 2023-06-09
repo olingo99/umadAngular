@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { Event, EventService } from '../event.service';
 import { User } from '../user.service';
-import { Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import { FormBuilder, FormControl } from '@angular/forms';
+
+/*
+Component used to display all the events of a user's day where you can select the date. Uses the event component to display the events.
+*/
 
 
 @Component({
@@ -14,16 +17,15 @@ import { FormBuilder, FormControl } from '@angular/forms';
 })
 export class AllEventsComponent {
 
-  events: Event[] = [];
-  user: User = new User();
-  active: boolean = false;
+  events: Event[] = []; //Events to display
+  user: User = new User();  //User to whom the events belong
+  active: boolean = false;  //Boolean used to know if the user is loaded
 
   constructor(
     private eventService: EventService,
     private route: ActivatedRoute,
     private userService: UserService,
     private formBuilder: FormBuilder,
-    // private formControl: FormControl
   ) { }
 
   //form to select date
@@ -32,18 +34,13 @@ export class AllEventsComponent {
   });
 
 
-
-  ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      console.warn('params[] home')
-      console.warn(params['id'])
+  
+  ngOnInit(): void {  
+    this.route.queryParams.subscribe((params) => {  //Get the id of the user from the url
       this.userService.getUserById(params['id']).subscribe({
         next: (data) => {
           this.user = data;
-          console.warn('user');
-          console.warn(typeof data);
-          this.active = true;
-          // this.getEvents(this.user.iduser);
+          this.active = true;  //Set the user as loaded, displaying the components
         },
         error: (error) => {
           console.log('error');
@@ -53,20 +50,16 @@ export class AllEventsComponent {
     );
   }
 
+  //Called when the user clicks on the submit button
   onSubmit(): void {
     this.getEvents();
   }
 
-  getEvents(): void {
-    // console.warn('getEvents()');
-    // console.warn(this.dateForm.value.date);
-    
+  //Called when the user choosses the date, gets the events of the day
+  getEvents(): void {    
     let date = this.dateForm.value.date!;
-    // console.warn(date.toString().replaceAll('-',''));
     this.eventService.getEventsByDate(this.user.iduser,date).subscribe({
-
       next: (data) => {
-        console.warn(data)
         this.events = data;
         this.active = true;
       },

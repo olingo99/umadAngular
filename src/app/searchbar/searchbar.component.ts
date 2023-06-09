@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { User, UserService} from '../user.service';
-import {Input, Output, EventEmitter} from '@angular/core';
-import { FriendsService, FriendMap } from '../friends.service';
-import { Observable } from 'rxjs';
-import { FormBuilder } from '@angular/forms';
+import {Output, EventEmitter} from '@angular/core';
+
+/*
+Component used to display a search bar.
+*/
+
+
 
 @Component({
   selector: 'app-searchbar',
@@ -12,14 +14,12 @@ import { FormBuilder } from '@angular/forms';
 })
 export class SearchbarComponent {
 
-  @Output() searchTermChange = new EventEmitter<string>();
+  @Output() searchTermChange = new EventEmitter<string>();  //Event emitter used to send the search term to the parent component
 
   constructor(
-    private userService: UserService,
-    private friendsService: FriendsService,
-    private formBuilder: FormBuilder
   ) { }
 
+  //Send the search term to the parent component every time the input change
   onInputChange(value: any){
     value = value.target.value;
     this.searchTermChange.emit(value);

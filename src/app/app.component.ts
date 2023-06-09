@@ -3,6 +3,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthTokenService } from './auth-token.service';
 
+/*
+First component loaded when the app is launched, contains the top bar and the router-outlet, the top bar is hidden in the login page
+*/
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,28 +16,22 @@ import { AuthTokenService } from './auth-token.service';
 export class AppComponent {
   title = 'umadAngularfeur';
 
-  displayTopBar=false;
-  // test = ;
-
   constructor(
     public router: Router,
     private authTokenService: AuthTokenService
-
     ) { }
 
+
+  //Called when the user click on the home button, redirect to the home page
   goHome():void{
-    //read id from base url
-    console.log("url go home")
-    // console.log(this.router.url)
-    // let id = +this.router.url.split("=").splice(-1)
-    // console.log(this.router.url.split("=").splice(-1))
     let id = +this.authTokenService.getConnectedUser();
-    console.log(id);
     this.router.navigate(['/home'], { queryParams: { id: id} });
   }
 
+  //Called when the user click on the disconnect button, remove the token and redirect to the login page
   disconnect():void{
     this.authTokenService.removeToken();
+    this.authTokenService.removeConnectedUser();
     this.router.navigate(['/login']);
   }
 

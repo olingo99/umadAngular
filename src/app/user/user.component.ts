@@ -3,55 +3,44 @@ import {Input} from '@angular/core';
 import { User, UserService} from '../user.service';
 import { Router } from '@angular/router';
 
+/*
+Component used to display the user data in the home page, contains the user name, the user mood and the user image changing depending on the mood. This component is used in the home page
+*/
+
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent {
-  @Input() user: User = new User();
-  @Input() connectedUser: User = new User();
-  imageSource: string = "assets/images/happy.png";
-  isAddEventActive: boolean = false;
+  @Input() user: User = new User();                   //User to display
+  @Input() connectedUser: User = new User();        //Connected user  
+  imageSource: string = "assets/images/happy.png";  //Image to display
 
   constructor(
-    private userService: UserService,
     private elementRef : ElementRef,
-    private router: Router ) { }
+    private router: Router,
+    private userService: UserService
+    ) { }
 
 
   ngOnInit() {
-    console.warn("user component")
-    console.warn(this.user);
-    console.warn(this.user.Mood);
-    // this.elementRef.nativeElement.style.setProperty('--progress', ((100-this.user.Mood)/2) + '%');
-    this.elementRef.nativeElement.style.setProperty('--progress', ((100+this.user.Mood)/2) + '%');
-
-    this.imageSource = this.getSourceImage(this.user.Mood);
-    this.isAddEventActive = this.user != this.connectedUser;
+    this.elementRef.nativeElement.style.setProperty('--progress', ((100+this.user.Mood)/2) + '%'); //Change the position of the indicator on the mood bar depending on the mood value
+    this.imageSource = this.userService.getSourceImage(this.user.Mood); //Change the image depending on the mood value
   }
 
   ngOnChanges() {
-    console.warn("user component")
-    this.ngOnInit();
+    this.ngOnInit();  //Called when the user change
   }
 
 
-  getSourceImage(mood: number): string {
-    if (mood >90){
-      return "assets/images/verryHappy.png";
-    }
-    if (mood >=0){
-      return "assets/images/happy.png";
-    }
-    return `assets/images/sad${Math.ceil(-mood/14)}.png`;
-  }
-
+  //Called when the user click on the add event button, redirect to the event creation page
   addEvent() {
-    // this.router.navigate(['/addEvent', this.user.Id]);
     this.router.navigate(['/eventCreation'], { queryParams: { id: this.user.iduser } });
   }
 
+  //Called when the user click on the see all events button, redirect to the all events page
   seeEvents() {
     this.router.navigate(['/allEvents'], { queryParams: { id: this.user.iduser } });
   }

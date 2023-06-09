@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
-import { Input } from '@angular/core';
 import { User, UserService } from '../user.service';
 import { ActivatedRoute } from '@angular/router';
+
+/*
+Component used to handle the home page, gets the user from the userService and displays 3 components, the user component, the event-day component and the friend list component
+*/
+
+
 
 @Component({
   selector: 'app-home',
@@ -9,26 +14,21 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  user: User = new User();
-  active: boolean = false;
+  user: User = new User();  //User to display
+  active: boolean = false;  //Boolean used to know if the user is loaded
 
   constructor(
     private userService: UserService,
     private route: ActivatedRoute
   ) { }
-  //on init
+
+
   ngOnInit(): void {
-    console.warn('home init');
-    // this.user = this.userService.getUserName();
-    this.route.queryParams.subscribe((params) => {
-      console.warn('params[] home')
-      console.warn(params['id'])
-      this.userService.getUserById(params['id']).subscribe({
+    this.route.queryParams.subscribe((params) => {  //Get the id of the user from the url
+      this.userService.getUserById(params['id']).subscribe({  //Call the getUserById function of the userService
         next: (data) => {
-          this.user = data;
-          console.warn('user');
-          console.warn(typeof data);
-          this.active = true;
+          this.user = data; //Set the user to display
+          this.active = true;   //Set the user as loaded, displaying the components
         },
         error: (error) => {
           console.log('error');
@@ -39,8 +39,7 @@ export class HomeComponent {
     );
   }
 
-  ngOnChanges() {
-    console.warn('home component');
+  ngOnChanges() { //Called when the user is changed
     this.ngOnInit();
   }
 

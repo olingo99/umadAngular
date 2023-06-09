@@ -1,20 +1,19 @@
+<!-- If the id of the template is not 0 (only the default tempalte id is 0, mleaning not an actual tamplate from the database), display the tempalte with the add and adjust buttons -->
 <form *ngIf="template.ideventTemplate != 0" [formGroup]="eventForm" (ngSubmit)="onSubmit($event.submitter.id)" class = "form-group">
-<div class = "vertical-separator" >
-    <div class = "event text">
-        <!-- <input type="text" formControlName="Name" id="Name"> -->
-        {{template.Name}}
+    <div class = "vertical-separator" >
+        <div class = "event text">
+            {{template.Name}}
+        </div>
+        <div class = "weight" >
+            <input type="number" formControlName="Weight" id="Weight" >
+        </div>
+        <div>
+            <button type="submit" id="Add">Add</button>
+            <button type="submit" id="Adjust" *ngIf="adjustVisible">Adjust</button>
+        </div>
     </div>
-    <div class = "weight" >
-        <input type="number" formControlName="Weight" id="Weight" >
-    </div>
-    <div>
-        <button type="submit" id="Add">Add</button>
-        <button type="submit" id="Adjust" *ngIf="adjustVisible">Adjust</button>
-    </div>
-
-</div>
 </form>
-
+<!-- If the id of the template is 0, display the tempalte creation form-->
 <form *ngIf="template.ideventTemplate == 0" [formGroup]="newEventForm" (ngSubmit)="onSubmitNewTemplate()" class = "form-group">
     <div class = "vertical-separator" >
         <div class = "event text">

@@ -2,8 +2,6 @@
 <div id="VerticaSeparator" >
     <div class="vertical">
         <app-user [user]="user" *ngIf="active"></app-user>
-        <!-- <app-user [user]="user"></app-user> -->
-
     </div>
     <div class="vertical">
         <app-event-day [user]="user" *ngIf="active" (reloadEvent)="ngOnChanges()"></app-event-day>

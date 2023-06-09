@@ -1,8 +1,14 @@
 import { Component } from '@angular/core';
-import { Input } from '@angular/core';
 import { User, UserService } from '../user.service';
 import { ActivatedRoute } from '@angular/router';
 import { Category, CategoryService } from '../category.service';
+
+/*
+Component for the page dispaleying the event creation. Contains the category list component, the template list component and the event day component
+*/
+
+
+
 
 @Component({
   selector: 'app-event-creation-page',
@@ -11,29 +17,21 @@ import { Category, CategoryService } from '../category.service';
 })
 export class EventCreationPageComponent {
 
-  user: User = new User();
-  category: Category = new Category();
-  active: boolean = false;
-  refrechChild: boolean = false;
+  user: User = new User();  //User for who we want to create an event
+  category: Category = new Category();  //Category of the event to create
+  active: boolean = false;  //Boolean used to know if the user is loaded
 
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    private categoryService: CategoryService
   ) { }
 
   ngOnInit(): void {
-    console.warn('home init');
-    this.route.queryParams.subscribe((params) => {
-      console.warn('params[] home')
-      console.warn(params['id'])
-      this.userService.getUserById(params['id']).subscribe({
-        next: (data) => {
-          this.user = data;
-          console.warn('user');
-          console.warn(typeof data);
-          this.active = true;
-          // this.refrechChild = true;
+    this.route.queryParams.subscribe((params) => {  //Get the id of the user from the url
+      this.userService.getUserById(params['id']).subscribe({  //Call the getUserById function of the userService
+        next: (data) => {   
+          this.user = data; //Set the user to display
+          this.active = true;  //Set the user as loaded, displaying the components
         },
         error: (error) => {
           console.log('error');
@@ -44,17 +42,11 @@ export class EventCreationPageComponent {
     );
   }
 
-  onCategoryChange(category: Category): void {
-    console.warn('category changed');
-    console.warn(category);
-    this.category = category;
+  onCategoryChange(category: Category): void {  //Called when the category is changed, event emitted by the category list component
+    this.category = category; //Set the category
   }
 
-  onRefreshEvent(res: boolean): void {
-    console.warn('refresh--------------------');
-    // this.refrechChild = false;
-
-    // this.refrechChild = true;
+  onRefreshEvent(res: boolean): void {  //Called when the event is created, event emitted by the event day component
     this.ngOnInit();
   }
 

@@ -48,18 +48,9 @@ import { AddFriendPageComponent } from './add-friend-page/add-friend-page.compon
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    // JwtModule.forRoot({
-    //   config:{
-    //     tokenGetter:function tokenGetter(){
-    //       return AuthTokenService
-    //     }
-    //   }
-    // }
-    // ) ,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HTTPInterceptorService, multi: true},
-    // {provide: JwtModule, useValue: JWT_OPTIONS}, JwtModule
   ],
   bootstrap: [AppComponent]
 })

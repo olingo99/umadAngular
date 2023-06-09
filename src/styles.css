@@ -1,16 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+
 body {
     background-color: var(--color-background);
   }
 
-  
 
 .container {
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
   padding-top: 100px;
-  /* background-color: var(--color-background); */
 }
 
 h1 {
@@ -33,13 +33,11 @@ label, p {
 input {
   font-size: 18px;
   padding: 10px;
-  /* width: 100%; */
   flex-grow: 1;
   border: none;
   border-radius: 5px;
   background-color: var(--color-link);
   color: var(--color-text);
-  /* margin-bottom: 20px; */
 }
 
 button {
@@ -47,9 +45,7 @@ button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  /* background-color: #000000; */
   background-color: var(--color-button);
-  /* color: white; */
   color: var(--color-text);
   margin: 10px;
 }
@@ -65,7 +61,6 @@ button:hover {
   font-size: 30px;
   text-align: center;
   overflow: hidden;
-  /* height: 5vh; */
 }
 
 .titleText {

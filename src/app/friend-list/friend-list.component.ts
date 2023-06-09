@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
 import { User, UserService} from '../user.service';
 import {Input} from '@angular/core';
-import { FriendsService, FriendMap } from '../friends.service';
-import { Observable } from 'rxjs';
+import { FriendsService} from '../friends.service';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthTokenService } from '../auth-token.service';
+
+/*
+Component used to handle the friend list, displays the list of friends of the user. Uses the Firend component to display the friends. This component is used in the home component
+*/
+
 
 @Component({
   selector: 'app-friend-list',
@@ -13,17 +17,17 @@ import { AuthTokenService } from '../auth-token.service';
   styleUrls: ['./friend-list.component.css']
 })
 export class FriendListComponent {
-  // friends: string[] = ["friend1", "friend2", "friend3"];
   @Input() user: User = new User();
-  test = new User();
-  friends: User[] = [this.test];
-  active : boolean = false;
-  friendRequests: User[] = [];
-  requestVisible: boolean = false;
+  // test = new User();
+  // friends: User[] = [this.test];
+  friends: User[] = []; //List of friends of the user
+
+  active : boolean = false; //Boolean used to know if the friends are loaded
+  friendRequests: User[] = [];  //List of friend requests of the user
+  requestVisible: boolean = false;  //Boolean used to know if the friend requests are visible
 
 
-  suggestions: User[] = [];
-  isVisible: boolean = false;
+  suggestions: User[] = []; //List of suggestions of friends for the user, used to add friends. displayed in the dropdownuserlist component
 
   constructor(
     private friendsService: FriendsService,
@@ -33,25 +37,17 @@ export class FriendListComponent {
     private authTokenService: AuthTokenService
   ) { }
 
-  friendForm = this.formBuilder.group({
-    friendName: ''
-  });
 
   ngOnInit() {
-    this.requestVisible = +this.user.iduser == +this.authTokenService.getConnectedUser();
-    this.friendsService.getFriends(this.user.iduser).subscribe({
+    this.requestVisible = +this.user.iduser == +this.authTokenService.getConnectedUser();   //Check if the friend requests are visible, they are only visible if the displayed user is the connected user
+    this.friendsService.getFriends(this.user.iduser).subscribe({                            //Call the getFriends function of the friendsService
       next : (data) => {
-        console.warn("here is the friend list")
-        console.warn(data);
-        this.friends = data;
-        // this.active = true;
-        this.getRequests();
+        this.friends = data;                                                              //Set the friends list
+        this.getRequests();                                                              //Get the friend requests
       },
       error : (error) => {
-        console.log(error);
-        this.friends = [];
-        this.getRequests();
-        // this.active = true;
+        this.friends = [];                                                              //Set the friends list to empty
+        this.getRequests();                                                            //Get the friend requests
       }
     }
     );
@@ -59,55 +55,35 @@ export class FriendListComponent {
 
   }
 
-  ngOnChanges() {
-    console.warn("user component")
+  ngOnChanges() { //Called when the user is changed
     this.ngOnInit();
   }
 
-  // onSubmitFriendForm() {
-  //   console.warn("friend form submitted");
-  //   console.warn(this.friendForm.value);
-  //   this.friendsService.addFriend(this.user.iduser, this.friendForm.value.friendName!).subscribe({
-  //     next : (data) => {
-  //       console.warn("here is the friend list")
-  //       console.warn(data);
-  //       // this.ngOnInit();
-  //     },
-  //     error : (error) => {
-  //       console.log("error fiends");
-  //       console.log(error);
-  //     }
-  //   });
-  // }
-
+  //Function used to go to the add friend page, called when the add friend button is clicked
   goToAddFriend() {
     this.router.navigate(['/addFriend'], { queryParams: { id: this.user.iduser } });
   }
 
+
+  //Function used to get the friend requests of the user
   getRequests():void {
-    console.warn("getting friend requests");
     this.friendsService.getFriendRequests(this.user.iduser).subscribe({
       next : (data) => {
-        console.warn("here is the friend request list");
-        console.warn(data);
-        this.friendRequests = data;
-        this.active = true;
+        this.friendRequests = data;    //Set the friend requests
+        this.active = true;               //Set the friends as loaded, displaying the components
       },
       error : (error) => {
-        console.warn("here is the friend request list error");
-        console.log(error);
-        this.friendRequests = [];
-        this.active = true;
+        this.friendRequests = [];      //Set the friend requests to empty
+        this.active = true;            //Set the friends as loaded, displaying the components
       }
     });
   }
 
+  //Function used to accept a friend request, called when the accept button is clicked on a friend request
   acceptFriendRequest(friendRequest: User):void{
     this.friendsService.acceptFriendRequest(this.user.iduser, friendRequest.iduser).subscribe({
       next : (data) => {
-        console.warn("accepeted friend request")
-        console.warn(data);
-        this.ngOnInit();
+        this.ngOnInit();  //Reload the component, to update the friend requests
       },
       error : (error) => {
         console.log(error);
@@ -115,12 +91,12 @@ export class FriendListComponent {
     });
   }
 
+
+  //Function used to decline a friend request, called when the decline button is clicked on a friend request
   declineFriendRequest(friendRequest:User):void{
     this.friendsService.declineFriendRequest(this.user.iduser, friendRequest.iduser).subscribe({
       next : (data) => {
-        console.warn("declined friend request")
-        console.warn(data);
-        this.ngOnInit();
+        this.ngOnInit();  //Reload the component, to update the friend requests
       },
       error : (error) => {
         console.log(error);
@@ -129,22 +105,6 @@ export class FriendListComponent {
 
   }
 
-  onSearchChange(searchValue: string): void {
-    console.warn("searching for " + searchValue);
-    this.userService.searchUsers("").subscribe({
-      next : (data) => {
-        console.warn("here is the suggestion list")
-        console.warn(data);
-        this.suggestions = data;
-      },
-      error : (error) => {
-        console.log(error);
-        this.suggestions = [];
-      }
-    });
-  }
 
-  onFocusChange(e:boolean){
-    this.isVisible = e;
-  }
+
 }

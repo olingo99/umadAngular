@@ -7,6 +7,9 @@ import { EventService } from '../event.service';
 import { AuthTokenService } from '../auth-token.service';
 import { Router } from '@angular/router';
 
+/*
+Component used to display an event. Used in the event day component
+*/
 
 @Component({
   selector: 'app-event',
@@ -14,32 +17,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./event.component.css']
 })
 export class EventComponent {
-  @Input() event: Event = new Event();
-  // @Input() event: string= "";
-  @Input() user: User = new User();
-  @Output() deleteEventEvent = new EventEmitter<boolean>();
-  @Input() friend: boolean = false;
+  @Input() event: Event = new Event();  //Event to display
+  @Input() user: User = new User(); //User who owns the event
+  @Output() deleteEventEvent = new EventEmitter<boolean>(); //Event used to notify the event day component that an event has been deleted
+  @Input() friend: boolean = false; //Boolean used to know if the event is displayed in the friend list
 
-  deleteVisible: boolean = false;
-  category: Category = new Category();
+  deleteVisible: boolean = false; //Boolean used to know if the delete button is visible
+  category: Category = new Category();  //Category of the event
 
   constructor(
     private categoryService: CategoryService,
     private eventService: EventService,
-    private route: ActivatedRoute,
     private authTokenService: AuthTokenService,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
-    console.warn('event init');
-    console.log(this.event);
+    this.deleteVisible = (+this.authTokenService.getConnectedUser() == this.user.iduser) && !this.friend; //Set the delete button visible if the user is the owner of the event and if the event is not displayed in the friend list
 
-    this.deleteVisible = (+this.authTokenService.getConnectedUser() == this.user.iduser) && !this.friend;
-
-    this.categoryService.getCategoryById(this.user.iduser, this.event.idcategory).subscribe({
+    this.categoryService.getCategoryById(this.user.iduser, this.event.idcategory).subscribe({ //Call the getCategoryById function of the categoryService to get the category of the event
       next: (data) => {
-        console.warn(data)
         this.category = data;
       },
       error: (error) => {
@@ -48,49 +44,20 @@ export class EventComponent {
         this.category = new Category();
       },
     });
-
-    // this.route.params.subscribe((params) => {
-    //   this.categoryService.getCategoryById(params['id'], this.event.idcategory).subscribe({
-    //     next: (data) => {
-    //       console.warn(data)
-    //       this.category = data;
-    //     },
-    //     error: (error) => {
-    //       console.log('error');
-    //       console.log(error);
-    //     },
-    //   });
-    // }
-    // );
-
-
-
-    // this.categoryService.getCategoryById(this.event.idcategory).subscribe({
-    //   next: (data) => {
-    //     console.warn(data)
-    //     this.category = data;
-    //   },
-    //   error: (error) => {
-    //     console.log('error');
-    //     console.log(error);
-    //   },
-    // });
   }
 
   ngOnChanges() {
-    console.warn("user component")
     this.ngOnInit();
   }
 
-  getColor(weight: number): string {
+  getColor(weight: number): string {  //Function used to get the color of the event's weight depending on its value
     return weight > 0 ? "green" : "red";
   }
 
+  //Function called when the delete button is clicked, deletes the event
   deleteEvent() {
     this.eventService.deleteEventById(this.user.iduser, this.event.idevent).subscribe({
       next: (data) => {
-        console.warn(data)
-        console.warn("delete event")
         this.deleteEventEvent.emit(true);
       },
       error: (error) => {

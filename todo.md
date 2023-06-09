@@ -17,7 +17,7 @@
 
 -   builder.control validator (compose, required, min,...)
 
--check username au login marche plus car je veux une full egalité dans l'intercepteur
+-   check username au login marche plus car je veux une full egalité dans l'intercepteur
 
 - add check username to friendrequezst
 
@@ -26,4 +26,4 @@
 
 - ngx-toastr ajouter toast
 
--grow border vertical collumn qui va pas en bas
+-   grow border vertical collumn qui va pas en bas

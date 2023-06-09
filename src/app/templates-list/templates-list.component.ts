@@ -5,6 +5,7 @@ import { EventTemplate, EventTemplateService } from '../event-template.service';
 import { Event } from '../event.service';
 import { Category } from '../category.service';
 import { Observable } from 'rxjs';
+import { AuthTokenService } from '../auth-token.service';
 
 @Component({
   selector: 'app-templates-list',
@@ -23,12 +24,18 @@ export class TemplatesListComponent {
   newTemplate: EventTemplate = new EventTemplate();
   resString: string = '';
 
+  adjustVisible: boolean = false;
+
   constructor(
-    private eventTemplateService: EventTemplateService
+    private eventTemplateService: EventTemplateService,
+    private authTokenService: AuthTokenService
   ) { }
 
 
   ngOnInit(): void {
+
+    this.adjustVisible = +this.authTokenService.getConnectedUser() == this.user.iduser;
+
     this.newTemplate.idcategory = this.category.idcategory;
     this.newTemplate.iduser = this.user.iduser;
     this.eventTemplateService.getEventTemplatesByUserId(this.user.iduser).subscribe({

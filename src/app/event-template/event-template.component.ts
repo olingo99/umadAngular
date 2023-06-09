@@ -10,7 +10,7 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./event-template.component.css']
 })
 export class EventTemplateComponent {
-
+  @Input() adjustVisible: boolean = false;
   @Input() template: EventTemplate = new EventTemplate();
   newTemplate: EventTemplate = new EventTemplate();
   @Output() submitRes = new EventEmitter<string>();
@@ -22,6 +22,8 @@ export class EventTemplateComponent {
   ) { }
   
   ngOnInit(): void {
+
+
     this.onChanges();
   }
 
@@ -75,6 +77,14 @@ export class EventTemplateComponent {
     console.warn('submitted');
     console.warn(this.newTemplate);
 
+    if (this.newTemplate.Name == '') {
+      this.submitRes.emit('Category name cannot be empty');
+      return;
+    }
+    if (this.newEventForm.value.Weight! == '') {
+      this.submitRes.emit('Weight cannot be empty');
+      return;
+    }
     this.eventTemplateService.addEventTemplate(this.newTemplate).subscribe({
       next: (data) => {
         console.warn('addEventTemplate');

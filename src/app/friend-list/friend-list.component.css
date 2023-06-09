@@ -13,6 +13,11 @@
 
 
 #usernameform{
-  display : flex;
-  flex-direction: column;
+  /* display : flex;
+  flex-direction: column; */
+  justify-content: center;
+}
+
+.addfriendbutton{
+  width: 50%;
 }

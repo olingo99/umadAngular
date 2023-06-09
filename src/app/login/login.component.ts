@@ -44,6 +44,7 @@ export class LoginComponent {
         next: (data) => {
           console.warn(data)
           this.authTokenService.setToken(data.token);
+          this.authTokenService.setConnectedUser(data.iduser);
           this.router.navigate(['home'], { queryParams: { id: data.iduser } });
         },
         error: (error) => {
@@ -66,6 +67,8 @@ export class LoginComponent {
           this.resLabel = "Username already taken";
         },
         error: (error) => {
+          console.log('errorrrrrrrrrrrrrrrrrrrrrrrrr');
+          console.log(error);
           if (error.status == 404 && this.loginForm.value.username !== "" && this.loginForm.value.password !== "") {
             this.userService.addUser(this.loginForm.value.username!, this.loginForm.value.password!).subscribe({
               next: (data) => {

@@ -1,0 +1,8 @@
+<div class="addcontainer">
+  <div class="component-wrapper">
+    <app-searchbar (searchTermChange)="onSearchChange($event)"></app-searchbar>
+  </div>
+  <div class="component-wrapper">
+    <app-dropdownuserlist [user]="user" [users]="suggestions"></app-dropdownuserlist>
+  </div>
+</div>

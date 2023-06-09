@@ -1,7 +1,6 @@
-<form [formGroup]="friendForm" (ngSubmit)="onSubmitFriendForm()" class = "form-group" >
-    <div>
-          <!-- <label for="username">Username</label> -->
-          <input type="text" formControlName="friendName" id="friendName" placeholder="UserName" (input)="onInputChange($event)">
-    </div>
-    <button type="submit" id="SignUp">Add friend</button>
-</form>
+
+<div class="searchbar">
+    <input type="text" formControlName="friendName" id="friendName" placeholder="UserName" (input)="onInputChange($event)" autocomplete="off">
+</div>
+
+

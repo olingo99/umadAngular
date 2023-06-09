@@ -37,7 +37,7 @@ export class UserService {
   }
 
   checkUserName(Name: string): Observable<User> {
-
+    
     return this.http.get<User>(baseUrl+`/user/name/${Name}`);
   }
 

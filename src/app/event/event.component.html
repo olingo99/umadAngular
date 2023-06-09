@@ -10,7 +10,7 @@
     <div class = "weight" [ngStyle] ="{'color': getColor(event.Weight)}">
         {{event.Weight}}
     </div>
-    <div *ngIf="!friend">
+    <div *ngIf="deleteVisible">
             <button (click)="deleteEvent()" >Delete</button>
     </div>
 </div>

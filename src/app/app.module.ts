@@ -21,6 +21,8 @@ import { EventTemplateComponent } from './event-template/event-template.componen
 import { config } from 'rxjs';
 import { AllEventsComponent } from './all-events/all-events.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
+import { DropdownuserlistComponent } from './dropdownuserlist/dropdownuserlist.component';
+import { AddFriendPageComponent } from './add-friend-page/add-friend-page.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
     EventTemplateComponent,
     AllEventsComponent,
     SearchbarComponent,
+    DropdownuserlistComponent,
+    AddFriendPageComponent,
   ],
   imports: [
     BrowserModule,

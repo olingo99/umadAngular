@@ -1,0 +1,9 @@
+
+<div class="dropdown">
+    <div class="dropdown-content">
+        <div *ngFor="let user of users; let i = index" class="name">
+          {{ user.Name }}
+          <button (click)="addFriend(user)" class = "addbutton"> Add!</button>
+        </div>
+      </div>
+</div>

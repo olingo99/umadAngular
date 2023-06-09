@@ -1,0 +1,23 @@
+.dropdown {
+  color: var(--color-text);
+}
+
+.dropdown-content {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+  font-size: larger;
+}
+
+.addbutton {
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}

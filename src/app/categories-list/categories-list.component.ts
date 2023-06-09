@@ -56,6 +56,10 @@ export class CategoriesListComponent {
     cat.Name = this.categoryForm.value.Name!;
     console.warn('new category');
     console.warn(cat);
+    if (cat.Name == '') {
+      this.resString = 'Category name cannot be empty';
+      return;
+    }
     this.categoryService.addCategory(cat).subscribe({
       next: (data) => {
         console.warn('category added');

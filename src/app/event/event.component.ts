@@ -4,6 +4,7 @@ import { CategoryService, Category } from '../category.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../user.service';
 import { EventService } from '../event.service';
+import { AuthTokenService } from '../auth-token.service';
 
 
 @Component({
@@ -18,18 +19,21 @@ export class EventComponent {
   @Output() deleteEventEvent = new EventEmitter<boolean>();
   @Input() friend: boolean = false;
 
-
+  deleteVisible: boolean = false;
   category: Category = new Category();
 
   constructor(
     private categoryService: CategoryService,
     private eventService: EventService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authTokenService: AuthTokenService
   ) { }
 
   ngOnInit(): void {
     console.warn('event init');
     console.log(this.event);
+
+    this.deleteVisible = (+this.authTokenService.getConnectedUser() == this.user.iduser) && !this.friend;
 
     this.categoryService.getCategoryById(this.user.iduser, this.event.idcategory).subscribe({
       next: (data) => {

@@ -4,15 +4,17 @@
 
 <!-- <div class = list *ngIf="active"> -->
 <div id="usernameform">
-    <p>Add a friend!</p>
-    <app-searchbar [user]="user"></app-searchbar>
+    <!-- <p>Add a friend!</p> -->
+    <!-- <app-searchbar [user]="user" (searchTermChange)="onSearchChange($event)"  (searchFocus)="onFocusChange($event)"></app-searchbar>
+    <app-dropdownuserlist *ngIf="isVisible" [users]="suggestions"></app-dropdownuserlist> -->
+    <button (click)="goToAddFriend()" class="addfriendbutton">Add friend</button>
 </div>
 <div class = "separator"></div>
 <div class = list>
 
     <app-friend  *ngFor="let friend of friends" [friend]="friend" ></app-friend>
 </div>
-<div>
+<div *ngIf="requestVisible">
     <p>Friend requests</p>
     <div *ngFor="let friendRequest of friendRequests">
         <p>{{friendRequest.Name}}</p>

@@ -14,6 +14,7 @@ export class HTTPInterceptorService implements HttpInterceptor{
     {url: '/login', method: 'POST'},
     {url: '/user/name/', method: 'GET'},
     {url: '/user', method: 'POST'},
+    // {url: '/user/name', method: 'GET'},
   ]
 
   constructor(
@@ -33,7 +34,7 @@ export class HTTPInterceptorService implements HttpInterceptor{
     );
 
     if (shouldIgnore) {
-      // console.log("shouldIgnore");
+      console.log("shouldIgnore");
       return next.handle(req);
     }
 

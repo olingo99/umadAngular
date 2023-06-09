@@ -24,9 +24,9 @@ export class AppComponent {
     //read id from base url
     // console.log("url")
     // console.log(this.router.url)
-    let id = +this.router.url.split("=").splice(-1)
+    // let id = +this.router.url.split("=").splice(-1)
     // console.log(this.router.url.split("=").splice(-1))
-
+    let id = +this.authTokenService.getConnectedUser();
     this.router.navigate(['/home'], { queryParams: { id: id} });
   }
 

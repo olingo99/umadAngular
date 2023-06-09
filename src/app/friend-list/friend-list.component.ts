@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { User} from '../user.service';
+import { User, UserService} from '../user.service';
 import {Input} from '@angular/core';
 import { FriendsService, FriendMap } from '../friends.service';
 import { Observable } from 'rxjs';
 import { FormBuilder } from '@angular/forms';
-
+import { Router } from '@angular/router';
+import { AuthTokenService } from '../auth-token.service';
 
 @Component({
   selector: 'app-friend-list',
@@ -18,9 +19,18 @@ export class FriendListComponent {
   friends: User[] = [this.test];
   active : boolean = false;
   friendRequests: User[] = [];
+  requestVisible: boolean = false;
+
+
+  suggestions: User[] = [];
+  isVisible: boolean = false;
+
   constructor(
     private friendsService: FriendsService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router,
+    private authTokenService: AuthTokenService
   ) { }
 
   friendForm = this.formBuilder.group({
@@ -28,6 +38,7 @@ export class FriendListComponent {
   });
 
   ngOnInit() {
+    this.requestVisible = +this.user.iduser == +this.authTokenService.getConnectedUser();
     this.friendsService.getFriends(this.user.iduser).subscribe({
       next : (data) => {
         console.warn("here is the friend list")
@@ -44,6 +55,8 @@ export class FriendListComponent {
       }
     }
     );
+
+
   }
 
   ngOnChanges() {
@@ -51,20 +64,24 @@ export class FriendListComponent {
     this.ngOnInit();
   }
 
-  onSubmitFriendForm() {
-    console.warn("friend form submitted");
-    console.warn(this.friendForm.value);
-    this.friendsService.addFriend(this.user.iduser, this.friendForm.value.friendName!).subscribe({
-      next : (data) => {
-        console.warn("here is the friend list")
-        console.warn(data);
-        // this.ngOnInit();
-      },
-      error : (error) => {
-        console.log("error fiends");
-        console.log(error);
-      }
-    });
+  // onSubmitFriendForm() {
+  //   console.warn("friend form submitted");
+  //   console.warn(this.friendForm.value);
+  //   this.friendsService.addFriend(this.user.iduser, this.friendForm.value.friendName!).subscribe({
+  //     next : (data) => {
+  //       console.warn("here is the friend list")
+  //       console.warn(data);
+  //       // this.ngOnInit();
+  //     },
+  //     error : (error) => {
+  //       console.log("error fiends");
+  //       console.log(error);
+  //     }
+  //   });
+  // }
+
+  goToAddFriend() {
+    this.router.navigate(['/addFriend'], { queryParams: { id: this.user.iduser } });
   }
 
   getRequests():void {
@@ -110,5 +127,24 @@ export class FriendListComponent {
       }
     });
 
+  }
+
+  onSearchChange(searchValue: string): void {
+    console.warn("searching for " + searchValue);
+    this.userService.searchUsers("").subscribe({
+      next : (data) => {
+        console.warn("here is the suggestion list")
+        console.warn(data);
+        this.suggestions = data;
+      },
+      error : (error) => {
+        console.log(error);
+        this.suggestions = [];
+      }
+    });
+  }
+
+  onFocusChange(e:boolean){
+    this.isVisible = e;
   }
 }

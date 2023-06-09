@@ -1,3 +1,4 @@
+<div class = "container">
 <form [formGroup]="dateForm" (ngSubmit)="onSubmit()">
     <div>
       <label for="date">Date:</label>
@@ -8,6 +9,8 @@
     </div>
 </form>
 
-<div *ngIf="active">
+
+<div *ngIf="active" >
 <app-event *ngFor="let event of events" [event]="event" [user]="user"></app-event>
+</div>
 </div>

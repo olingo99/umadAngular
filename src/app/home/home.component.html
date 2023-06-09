@@ -6,7 +6,7 @@
 
     </div>
     <div class="vertical">
-        <app-event-day [user]="user" *ngIf="active" ></app-event-day>
+        <app-event-day [user]="user" *ngIf="active" (reloadEvent)="ngOnChanges()"></app-event-day>
     </div>
     <div class="vertical">
        <app-friend-list [user]="user" *ngIf="active"></app-friend-list>

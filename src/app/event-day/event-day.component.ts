@@ -3,6 +3,7 @@ import { Event, EventService } from '../event.service';
 import { ActivatedRoute } from '@angular/router';
 import { Input } from '@angular/core';
 import { User} from '../user.service';
+import {Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-event-day',
@@ -10,6 +11,7 @@ import { User} from '../user.service';
   styleUrls: ['./event-day.component.css']
 })
 export class EventDayComponent {
+  @Output() reloadEvent = new EventEmitter<boolean>();
 
   events: Event[] = [];
   // events: string = "";
@@ -18,45 +20,11 @@ export class EventDayComponent {
 
   constructor(
     private eventService: EventService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+
   ) { }
 
   ngOnInit(): void {
-
-    // this.route.params.subscribe((params) => {
-    //   console.warn('params[]')
-    //   console.warn(params['id'])
-    //   this.eventService.getTodayEventsByUserId(params['id']).subscribe({
-    //     next: (data) => {
-    //       console.warn(data)
-    //       this.events = data;
-    //     },
-    //     error: (error) => {
-    //       console.log('error');
-    //       console.log(error);
-    //     },
-    //   });
-    // }
-    // );
-
-    // this.route.queryParams.subscribe((params) => {
-    //   this.userService.getUserById(params['id']).subscribe({
-    //     next: (data) => {
-    //       this.user = data;
-    //       console.warn('user');
-    //       console.warn(typeof data);
-    //       this.active = true;
-    //     },
-    //     error: (error) => {
-    //       console.log('error');
-    //       console.log(error);
-    //     },
-    //   });
-    // }
-    // );
-
-
-
     this.eventService.getTodayEventsByUserId(this.user.iduser).subscribe({
       next: (data) => {
         console.warn(data)
@@ -78,6 +46,7 @@ export class EventDayComponent {
   reload(event : boolean){
     console.warn('reload event')
     console.warn(event)
-    this.ngOnInit();
+    this.reloadEvent.emit(event);
+    // this.ngOnInit();
   }
 }

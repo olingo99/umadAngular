@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from '../user.service';
 import { EventService } from '../event.service';
 import { AuthTokenService } from '../auth-token.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class EventComponent {
     private categoryService: CategoryService,
     private eventService: EventService,
     private route: ActivatedRoute,
-    private authTokenService: AuthTokenService
+    private authTokenService: AuthTokenService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {

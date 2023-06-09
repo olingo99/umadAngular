@@ -22,11 +22,12 @@ export class AppComponent {
 
   goHome():void{
     //read id from base url
-    // console.log("url")
+    console.log("url go home")
     // console.log(this.router.url)
     // let id = +this.router.url.split("=").splice(-1)
     // console.log(this.router.url.split("=").splice(-1))
     let id = +this.authTokenService.getConnectedUser();
+    console.log(id);
     this.router.navigate(['/home'], { queryParams: { id: id} });
   }
 

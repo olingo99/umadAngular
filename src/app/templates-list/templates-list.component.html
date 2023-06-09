@@ -1,10 +1,10 @@
 <div class = list *ngIf="active">
     <p *ngIf="category.idcategory != 0 && eventTemplates.length != 0">Event Templates</p>   <!-- If the category is not the default one and there are templates in the category, display the title -->
-    <div *ngFor="let template of eventTemplates">   <!-- For each template in the category, display the template if the template category is the same as the selected category -->
+    <div *ngFor="let template of eventTemplates" class="tempaltediv">   <!-- For each template in the category, display the template if the template category is the same as the selected category -->
         <app-event-template  *ngIf="template.idcategory == category.idcategory" [template]="template" [adjustVisible]="adjustVisible" (submitRes)="onSubmitRes($event)" ></app-event-template>
     </div>
     <p *ngIf="category.idcategory != 0" >Create new template</p>    <!-- If the category is not the default one, display the title -->
-    <app-event-template *ngIf="category.idcategory != 0" [template]="newTemplate" [adjustVisible]="adjustVisible" (submitRes)="onSubmitRes($event)"></app-event-template>   <!-- Display the template form for creating a new template if a category has been selected-->
+    <app-event-template class="tempaltediv" *ngIf="category.idcategory != 0" [template]="newTemplate" [adjustVisible]="adjustVisible" (submitRes)="onSubmitRes($event)"></app-event-template>   <!-- Display the template form for creating a new template if a category has been selected-->
     <p id="resLabel">{{resString}}</p>
 
 </div>

@@ -16,7 +16,6 @@
   
   .category-list input[type="radio"]:checked + label {
     background-color: var(--color-selected);
-    /* color: white; */
   }
 
   .vertical{
@@ -26,8 +25,6 @@
     display: flex;
     flex-direction: column;
     justify-content: left;
-    /* align-items: center;
-    text-align: center; */
     flex-grow: 1;
 }
 
@@ -42,17 +39,6 @@
   font-weight: bold;
 }
 
-/* .event {
-  flex: 1;
-  margin-right: 10px;
-  width: 40%;
-}
-
-.weight {
-  flex: 1;
-  margin-right: 10px;
-  width: 20%;
-} */
 
 .weight{
   padding-left: 10%;
@@ -78,4 +64,9 @@ input[type="number"] {
 
 .form-group button:hover {
   background-color: var(--color-hover);
+}
+
+.categorydiv, p{
+  padding-left: 1%;
+  padding-right: 1%;
 }

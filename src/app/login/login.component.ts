@@ -39,7 +39,7 @@ export class LoginComponent {
 
   //Called when the user click on the login button, try to login the user with the username and password entered in the form
   signIn() {
-    if (this.loginForm.value.username !== null && this.loginForm.value.password !== null) { //Check if the fields are not empty
+    if (this.loginForm.value.username !== '' && this.loginForm.value.password !== '') { //Check if the fields are not empty
       this.userService.tryLogin(this.loginForm.value.username!, this.loginForm.value.password!).subscribe({ //Call the tryLogin function of the userService
         next: (data) => {                                                               //If the login is successful, set the token and the connected user in the authTokenService and redirect the user to the home page
           this.authTokenService.setToken(data.token);
@@ -59,7 +59,7 @@ export class LoginComponent {
 
   //Called when the user click on the signup button, try to create a new user with the username and password entered in the form
   signUp() {
-    if (this.loginForm.value.username !== null && this.loginForm.value.password !== null) { //Check if the fields are not empty
+    if (this.loginForm.value.username !== '' && this.loginForm.value.password !== '') { //Check if the fields are not empty
       this.userService.checkUserName(this.loginForm.value.username!).subscribe({  //Call the checkUserName function of the userService, returns an 404 error if the username is not already taken
         next: (data) => {                                                        //If the username is already taken, display an error message
           this.resLabel = "Username already taken";

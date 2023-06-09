@@ -20,6 +20,7 @@ import { TemplatesListComponent } from './templates-list/templates-list.componen
 import { EventTemplateComponent } from './event-template/event-template.component';
 import { config } from 'rxjs';
 import { AllEventsComponent } from './all-events/all-events.component';
+import { SearchbarComponent } from './searchbar/searchbar.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AllEventsComponent } from './all-events/all-events.component';
     TemplatesListComponent,
     EventTemplateComponent,
     AllEventsComponent,
+    SearchbarComponent,
   ],
   imports: [
     BrowserModule,

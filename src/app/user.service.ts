@@ -54,6 +54,10 @@ export class UserService {
   getUserById(Id: Number): Observable<User>{
     return this.http.get<User>(baseUrl+`/user/${Id}`);
   }
+
+  searchUsers(search: string): Observable<User[]>{
+    return this.http.post<User[]>(baseUrl+`/userNames`, {search});
+  }
   
 }
   

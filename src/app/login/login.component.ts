@@ -48,6 +48,8 @@ export class LoginComponent {
         },
         error: (error) => {
           this.resLabel = "Wrong username or password"; //If the login is not successful, display an error message
+          console.log('error');
+          console.log(error);
         },
 
       });
@@ -72,6 +74,8 @@ export class LoginComponent {
               },
               error: (error) => {                                                 //If the user is not created, display an error message
                 this.resLabel = "Error";
+                console.log('error');
+                console.log(error);
               }
             })
           }
@@ -81,6 +85,9 @@ export class LoginComponent {
 
         }
       })
+    }
+    else {
+      this.resLabel = "Please fill the fields";                                   //If the fields are empty, display an error message
     }
   }
 
